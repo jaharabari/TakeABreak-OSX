@@ -9,27 +9,27 @@ import XCTest
 class TakeABreakTests: XCTestCase {
     
     func testShouldBeActiveForIdleTimeBelowThreshold() {
-        let activityStatus = try? checkActivity(currentIdleSeconds: 59, previousActiveSeconds: 120, secondsSinceLastCheck: 30, inactivityThreshold: 60)
+        let activityStatus = try? checkActivity(currentIdleInterval: 59, previousActiveInterval: 120, intervalSinceLastCheck: 30, inactivityThreshold: 60)
         
         XCTAssertEqual(activityStatus?.isActive, true)
-        XCTAssertEqual(activityStatus?.sinceSeconds, 150)
+        XCTAssertEqual(activityStatus?.sinceInterval, 150)
     }
     
     func testShouldBeInactiveForIdleTimeEqualToThreshold() {
-        let activityStatus = try? checkActivity(currentIdleSeconds: 60, previousActiveSeconds: 0, secondsSinceLastCheck: 30, inactivityThreshold: 60)
+        let activityStatus = try? checkActivity(currentIdleInterval: 60, previousActiveInterval: 0, intervalSinceLastCheck: 30, inactivityThreshold: 60)
         
         XCTAssertEqual(activityStatus?.isActive, false)
-        XCTAssertEqual(activityStatus?.sinceSeconds, 60)
+        XCTAssertEqual(activityStatus?.sinceInterval, 60)
     }
     
     func testShouldBeInactiveForIdleTimeAboveThreshold() {
-        let activityStatus = try? checkActivity(currentIdleSeconds: 61, previousActiveSeconds: 0, secondsSinceLastCheck: 30, inactivityThreshold: 60)
+        let activityStatus = try? checkActivity(currentIdleInterval: 61, previousActiveInterval: 0, intervalSinceLastCheck: 30, inactivityThreshold: 60)
         
         XCTAssertEqual(activityStatus?.isActive, false)
-        XCTAssertEqual(activityStatus?.sinceSeconds, 61)
+        XCTAssertEqual(activityStatus?.sinceInterval, 61)
     }
     
-    func testShouldThrowExceptionWhenIdleIsGreaterThanTotalActivitySeconds() {
-//        XCTAssertThrowsError(try checkActivity(currentIdleSeconds: 60, previousActiveSeconds: 20, secondsSinceLastCheck: 30, inactivityThreshold: 60))
+    func testShouldThrowExceptionWhenIdleIsGreaterThanTotalActivityInterval() {
+        // XCTAssertThrowsError(try checkActivity(currentIdleInterval: 60, previousActiveInterval: 20, intervalSinceLastCheck: 30, inactivityThreshold: 60))
     }
 }
