@@ -7,5 +7,18 @@ import Cocoa
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
-    @IBOutlet weak var window: NSWindow!
+    @IBOutlet weak var statusMenu: NSMenu!
+    
+    let statusItem = NSStatusBar.systemStatusBar().statusItemWithLength(NSVariableStatusItemLength)
+    
+    func applicationDidFinishLaunching(notification: NSNotification) {
+       
+    
+        statusItem.title = "Take-A-Brake"
+        statusItem.menu = statusMenu
+    }
+    
+    @IBAction func menuClicked(sender: NSMenuItem) {
+     NSApplication.sharedApplication().terminate(self)
+    }
 }
