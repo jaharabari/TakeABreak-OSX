@@ -27,7 +27,9 @@ public func SystemIdleTime() -> Int64? {
     guard IORegistryEntryCreateCFProperties(entry, &unmanagedDict, kCFAllocatorDefault, 0) == KERN_SUCCESS else { return nil }
     guard let dict = unmanagedDict?.takeUnretainedValue() else { return nil }
     
-    let value = CFDictionaryGetValue(dict, unsafeAddressOf("HIDIdleTime"))
+    let key: CFString = "HIDIdleTime"
+    let address = unsafeAddressOf(key)
+    let value = CFDictionaryGetValue(dict, address)
     let number: CFNumberRef = unsafeBitCast(value, CFNumberRef.self)
     var nanoseconds: Int64 = 0
     guard CFNumberGetValue(number, CFNumberType.SInt64Type, &nanoseconds) else { return nil }
