@@ -8,8 +8,8 @@
 
 import Foundation
 
-func checkActivity(currentIdleSeconds idle: Int64, previousActiveSeconds active: Int64, secondsSinceLastCheck lastCheck: Int64, inactivityThreshold: Int64) -> ActivityStatus {
-    // guard idle < lastCheck || active == 0 else { throw CheckError.InvalidIdleTime }
+func checkActivity(currentIdleSeconds idle: Int64, previousActiveSeconds active: Int64, secondsSinceLastCheck lastCheck: Int64, inactivityThreshold: Int64) throws -> ActivityStatus {
+//    guard idle < lastCheck || active == 0 else { throw CheckError.InvalidIdleTime }
     
     let isActive = idle < inactivityThreshold
     let sinceSeconds = isActive ? active + lastCheck : idle
