@@ -10,7 +10,9 @@
 		313D4B611CCE1245009E8DCC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 313D4B601CCE1245009E8DCC /* AppDelegate.swift */; };
 		313D4B631CCE1245009E8DCC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 313D4B621CCE1245009E8DCC /* Assets.xcassets */; };
 		313D4B661CCE1245009E8DCC /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 313D4B641CCE1245009E8DCC /* MainMenu.xib */; };
-		313D4B711CCE1245009E8DCC /* TakeABreakTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 313D4B701CCE1245009E8DCC /* TakeABreakTests.swift */; };
+		313D4B711CCE1245009E8DCC /* ActivityStatusTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 313D4B701CCE1245009E8DCC /* ActivityStatusTests.swift */; };
+		543CF64B1CCE45F6004156DB /* ActivityStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 543CF6471CCE44D2004156DB /* ActivityStatus.swift */; };
+		543CF64D1CCE4721004156DB /* SystemIdleTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 543CF64C1CCE4721004156DB /* SystemIdleTime.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -30,8 +32,10 @@
 		313D4B651CCE1245009E8DCC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		313D4B671CCE1245009E8DCC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		313D4B6C1CCE1245009E8DCC /* TakeABreakTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TakeABreakTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		313D4B701CCE1245009E8DCC /* TakeABreakTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TakeABreakTests.swift; sourceTree = "<group>"; };
+		313D4B701CCE1245009E8DCC /* ActivityStatusTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityStatusTests.swift; sourceTree = "<group>"; };
 		313D4B721CCE1245009E8DCC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		543CF6471CCE44D2004156DB /* ActivityStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityStatus.swift; sourceTree = "<group>"; };
+		543CF64C1CCE4721004156DB /* SystemIdleTime.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SystemIdleTime.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,7 +88,7 @@
 		313D4B6F1CCE1245009E8DCC /* TakeABreakTests */ = {
 			isa = PBXGroup;
 			children = (
-				313D4B701CCE1245009E8DCC /* TakeABreakTests.swift */,
+				313D4B701CCE1245009E8DCC /* ActivityStatusTests.swift */,
 				313D4B721CCE1245009E8DCC /* Info.plist */,
 			);
 			path = TakeABreakTests;
@@ -94,6 +98,8 @@
 			isa = PBXGroup;
 			children = (
 				313D4B601CCE1245009E8DCC /* AppDelegate.swift */,
+				543CF6471CCE44D2004156DB /* ActivityStatus.swift */,
+				543CF64C1CCE4721004156DB /* SystemIdleTime.swift */,
 			);
 			path = Application;
 			sourceTree = "<group>";
@@ -214,6 +220,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				543CF64B1CCE45F6004156DB /* ActivityStatus.swift in Sources */,
+				543CF64D1CCE4721004156DB /* SystemIdleTime.swift in Sources */,
 				313D4B611CCE1245009E8DCC /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -222,7 +230,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				313D4B711CCE1245009E8DCC /* TakeABreakTests.swift in Sources */,
+				313D4B711CCE1245009E8DCC /* ActivityStatusTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

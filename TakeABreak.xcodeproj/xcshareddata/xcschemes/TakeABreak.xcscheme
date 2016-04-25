@@ -37,6 +37,11 @@
                BlueprintName = "TakeABreakTests"
                ReferencedContainer = "container:TakeABreak.xcodeproj">
             </BuildableReference>
+            <SkippedTests>
+               <Test
+                  Identifier = "TakeABreakTests/testShouldThrowExceptionWhenIdleIsGreaterThanTotalActivitySeconds()">
+               </Test>
+            </SkippedTests>
          </TestableReference>
       </Testables>
       <MacroExpansion>
