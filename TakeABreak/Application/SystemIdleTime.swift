@@ -11,9 +11,9 @@ import Foundation
 /**
  Returns number of seconds since system became idle
  
- returns: `Int64?`: System idle time in seconds or nil when unable to retrieve it
+ returns: `Double?`: System idle time in seconds or nil when unable to retrieve it
  */
-public func SystemIdleTime() -> Int64? {
+public func SystemIdleTime() -> Double? {
     var iterator: io_iterator_t = 0
     defer { IOObjectRelease(iterator) }
     guard IOServiceGetMatchingServices(kIOMasterPortDefault, IOServiceMatching("IOHIDSystem"), &iterator) == KERN_SUCCESS else { return nil }
@@ -33,7 +33,7 @@ public func SystemIdleTime() -> Int64? {
     let number: CFNumberRef = unsafeBitCast(value, CFNumberRef.self)
     var nanoseconds: Int64 = 0
     guard CFNumberGetValue(number, CFNumberType.SInt64Type, &nanoseconds) else { return nil }
-    let seconds = nanoseconds >> 30
+    let interval = Double(nanoseconds) / Double(NSEC_PER_SEC)
     
-    return seconds
+    return interval
 }
