@@ -1,0 +1,416 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		313D4B611CCE1245009E8DCC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 313D4B601CCE1245009E8DCC /* AppDelegate.swift */; };
+		313D4B631CCE1245009E8DCC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 313D4B621CCE1245009E8DCC /* Assets.xcassets */; };
+		313D4B661CCE1245009E8DCC /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 313D4B641CCE1245009E8DCC /* MainMenu.xib */; };
+		313D4B711CCE1245009E8DCC /* TakeABreakTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 313D4B701CCE1245009E8DCC /* TakeABreakTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		313D4B6D1CCE1245009E8DCC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 313D4B551CCE1245009E8DCC /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 313D4B5C1CCE1245009E8DCC;
+			remoteInfo = TakeABreak;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		313D4B5D1CCE1245009E8DCC /* TakeABreak.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TakeABreak.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		313D4B601CCE1245009E8DCC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		313D4B621CCE1245009E8DCC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		313D4B651CCE1245009E8DCC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		313D4B671CCE1245009E8DCC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		313D4B6C1CCE1245009E8DCC /* TakeABreakTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TakeABreakTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		313D4B701CCE1245009E8DCC /* TakeABreakTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TakeABreakTests.swift; sourceTree = "<group>"; };
+		313D4B721CCE1245009E8DCC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		313D4B5A1CCE1245009E8DCC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		313D4B691CCE1245009E8DCC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		313D4B541CCE1245009E8DCC = {
+			isa = PBXGroup;
+			children = (
+				313D4B5F1CCE1245009E8DCC /* TakeABreak */,
+				313D4B6F1CCE1245009E8DCC /* TakeABreakTests */,
+				313D4B5E1CCE1245009E8DCC /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		313D4B5E1CCE1245009E8DCC /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				313D4B5D1CCE1245009E8DCC /* TakeABreak.app */,
+				313D4B6C1CCE1245009E8DCC /* TakeABreakTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		313D4B5F1CCE1245009E8DCC /* TakeABreak */ = {
+			isa = PBXGroup;
+			children = (
+				313D4B7B1CCE12F7009E8DCC /* Application */,
+				313D4B671CCE1245009E8DCC /* Info.plist */,
+				313D4B7C1CCE130A009E8DCC /* Resources */,
+				313D4B7D1CCE131B009E8DCC /* UI */,
+			);
+			path = TakeABreak;
+			sourceTree = "<group>";
+		};
+		313D4B6F1CCE1245009E8DCC /* TakeABreakTests */ = {
+			isa = PBXGroup;
+			children = (
+				313D4B701CCE1245009E8DCC /* TakeABreakTests.swift */,
+				313D4B721CCE1245009E8DCC /* Info.plist */,
+			);
+			path = TakeABreakTests;
+			sourceTree = "<group>";
+		};
+		313D4B7B1CCE12F7009E8DCC /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				313D4B601CCE1245009E8DCC /* AppDelegate.swift */,
+			);
+			path = Application;
+			sourceTree = "<group>";
+		};
+		313D4B7C1CCE130A009E8DCC /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				313D4B621CCE1245009E8DCC /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		313D4B7D1CCE131B009E8DCC /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				313D4B641CCE1245009E8DCC /* MainMenu.xib */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		313D4B5C1CCE1245009E8DCC /* TakeABreak */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 313D4B751CCE1245009E8DCC /* Build configuration list for PBXNativeTarget "TakeABreak" */;
+			buildPhases = (
+				313D4B591CCE1245009E8DCC /* Sources */,
+				313D4B5A1CCE1245009E8DCC /* Frameworks */,
+				313D4B5B1CCE1245009E8DCC /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TakeABreak;
+			productName = TakeABreak;
+			productReference = 313D4B5D1CCE1245009E8DCC /* TakeABreak.app */;
+			productType = "com.apple.product-type.application";
+		};
+		313D4B6B1CCE1245009E8DCC /* TakeABreakTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 313D4B781CCE1245009E8DCC /* Build configuration list for PBXNativeTarget "TakeABreakTests" */;
+			buildPhases = (
+				313D4B681CCE1245009E8DCC /* Sources */,
+				313D4B691CCE1245009E8DCC /* Frameworks */,
+				313D4B6A1CCE1245009E8DCC /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				313D4B6E1CCE1245009E8DCC /* PBXTargetDependency */,
+			);
+			name = TakeABreakTests;
+			productName = TakeABreakTests;
+			productReference = 313D4B6C1CCE1245009E8DCC /* TakeABreakTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		313D4B551CCE1245009E8DCC /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0730;
+				LastUpgradeCheck = 0730;
+				ORGANIZATIONNAME = "EL Passion";
+				TargetAttributes = {
+					313D4B5C1CCE1245009E8DCC = {
+						CreatedOnToolsVersion = 7.3;
+					};
+					313D4B6B1CCE1245009E8DCC = {
+						CreatedOnToolsVersion = 7.3;
+						TestTargetID = 313D4B5C1CCE1245009E8DCC;
+					};
+				};
+			};
+			buildConfigurationList = 313D4B581CCE1245009E8DCC /* Build configuration list for PBXProject "TakeABreak" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 313D4B541CCE1245009E8DCC;
+			productRefGroup = 313D4B5E1CCE1245009E8DCC /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				313D4B5C1CCE1245009E8DCC /* TakeABreak */,
+				313D4B6B1CCE1245009E8DCC /* TakeABreakTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		313D4B5B1CCE1245009E8DCC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				313D4B631CCE1245009E8DCC /* Assets.xcassets in Resources */,
+				313D4B661CCE1245009E8DCC /* MainMenu.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		313D4B6A1CCE1245009E8DCC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		313D4B591CCE1245009E8DCC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				313D4B611CCE1245009E8DCC /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		313D4B681CCE1245009E8DCC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				313D4B711CCE1245009E8DCC /* TakeABreakTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		313D4B6E1CCE1245009E8DCC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 313D4B5C1CCE1245009E8DCC /* TakeABreak */;
+			targetProxy = 313D4B6D1CCE1245009E8DCC /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		313D4B641CCE1245009E8DCC /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				313D4B651CCE1245009E8DCC /* Base */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		313D4B731CCE1245009E8DCC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		313D4B741CCE1245009E8DCC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		313D4B761CCE1245009E8DCC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = TakeABreak/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.elpassion.TakeABreak;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		313D4B771CCE1245009E8DCC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = TakeABreak/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.elpassion.TakeABreak;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		313D4B791CCE1245009E8DCC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = TakeABreakTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.elpassion.TakeABreakTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TakeABreak.app/Contents/MacOS/TakeABreak";
+			};
+			name = Debug;
+		};
+		313D4B7A1CCE1245009E8DCC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = TakeABreakTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.elpassion.TakeABreakTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TakeABreak.app/Contents/MacOS/TakeABreak";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		313D4B581CCE1245009E8DCC /* Build configuration list for PBXProject "TakeABreak" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				313D4B731CCE1245009E8DCC /* Debug */,
+				313D4B741CCE1245009E8DCC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		313D4B751CCE1245009E8DCC /* Build configuration list for PBXNativeTarget "TakeABreak" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				313D4B761CCE1245009E8DCC /* Debug */,
+				313D4B771CCE1245009E8DCC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		313D4B781CCE1245009E8DCC /* Build configuration list for PBXNativeTarget "TakeABreakTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				313D4B791CCE1245009E8DCC /* Debug */,
+				313D4B7A1CCE1245009E8DCC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 313D4B551CCE1245009E8DCC /* Project object */;
+}
