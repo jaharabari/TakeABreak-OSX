@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		31019F001CD02428007437E9 /* SatusBarMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31019EFF1CD02428007437E9 /* SatusBarMenu.swift */; };
 		31019F021CD024E9007437E9 /* Then.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31019F011CD024E9007437E9 /* Then.swift */; };
 		31019F041CD02A94007437E9 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31019F031CD02A94007437E9 /* main.swift */; };
 		313D4B611CCE1245009E8DCC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 313D4B601CCE1245009E8DCC /* AppDelegate.swift */; };
@@ -31,6 +32,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		31019EFF1CD02428007437E9 /* SatusBarMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SatusBarMenu.swift; sourceTree = "<group>"; };
 		31019F011CD024E9007437E9 /* Then.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Then.swift; sourceTree = "<group>"; };
 		31019F031CD02A94007437E9 /* main.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		313D4B5D1CCE1245009E8DCC /* TakeABreak.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TakeABreak.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -114,6 +116,7 @@
 				31F4203D1CCF80E500083124 /* ActivityNotifier.swift */,
 				31F4203F1CCF810200083124 /* IntervalFormatter.swift */,
 				D549A76D1CCFCD7C00F8F989 /* ActivityWatcher.swift */,
+				31019EFF1CD02428007437E9 /* SatusBarMenu.swift */,
 				31019F011CD024E9007437E9 /* Then.swift */,
 			);
 			path = Application;
@@ -235,6 +238,7 @@
 				31019F041CD02A94007437E9 /* main.swift in Sources */,
 				313D4B611CCE1245009E8DCC /* AppDelegate.swift in Sources */,
 				D549A76A1CCF66EE00F8F989 /* ActivityType.swift in Sources */,
+				31019F001CD02428007437E9 /* SatusBarMenu.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
