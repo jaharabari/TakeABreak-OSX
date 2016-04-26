@@ -10,6 +10,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     let IDLE_THRESHOLD = 3.0 // Seconds
     let NOTIFICATION_THRESHOLD = 5.0 // Seconds
     
+    var statusBarMenu: StatusBarMenu?
     
     var activityWatcher: ActivityWatcher?
     var notifier: ActivityNotifier?
@@ -32,6 +33,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             formatter: intervalFormatter
         )
         
+        self.statusBarMenu = StatusBarMenu(statusBar: NSStatusBar.systemStatusBar()).then {
+            $0.delegate = self
+        }
         
         updateStatus()
     }
@@ -62,5 +66,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         var title = activityType == .Active ? "Active: " : "Idle: "
         title += formatter.stringForInterval(interval)
+        statusBarMenu?.title = title
+    }
+}
+
+extension AppDelegate: StatusBarMenuDelegate {
+    func statusBarMenuDidSelectQuit() {
+        NSApplication.sharedApplication().terminate(self)
     }
 }
