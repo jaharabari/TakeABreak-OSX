@@ -55,13 +55,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 if activeInterval > 5 {
                     notifier?.showNotification(activeInterval: activeInterval)
                 }
-                
-                break
             case .Idle:
                 activeInterval = 0
                 notifier?.hideNotification()
-                
-                break
             }
             
             if let statusItem = statusItem {
@@ -86,12 +82,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         switch status.type {
         case .Active:
             statusItem.title = "Active: \(formatter.stringForInterval(status.sinceInterval))"
-            
-            break
         case .Idle:
             statusItem.title = "Idle: \(formatter.stringForInterval(status.sinceInterval))"
-            
-            break
         }
     }
 }
