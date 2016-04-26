@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		31019F021CD024E9007437E9 /* Then.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31019F011CD024E9007437E9 /* Then.swift */; };
+		31019F041CD02A94007437E9 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31019F031CD02A94007437E9 /* main.swift */; };
 		313D4B611CCE1245009E8DCC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 313D4B601CCE1245009E8DCC /* AppDelegate.swift */; };
 		313D4B631CCE1245009E8DCC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 313D4B621CCE1245009E8DCC /* Assets.xcassets */; };
 		31F4203E1CCF80E500083124 /* ActivityNotifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31F4203D1CCF80E500083124 /* ActivityNotifier.swift */; };
@@ -31,6 +32,7 @@
 
 /* Begin PBXFileReference section */
 		31019F011CD024E9007437E9 /* Then.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Then.swift; sourceTree = "<group>"; };
+		31019F031CD02A94007437E9 /* main.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		313D4B5D1CCE1245009E8DCC /* TakeABreak.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TakeABreak.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		313D4B601CCE1245009E8DCC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		313D4B621CCE1245009E8DCC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -104,6 +106,7 @@
 		313D4B7B1CCE12F7009E8DCC /* Application */ = {
 			isa = PBXGroup;
 			children = (
+				31019F031CD02A94007437E9 /* main.swift */,
 				313D4B601CCE1245009E8DCC /* AppDelegate.swift */,
 				543CF64C1CCE4721004156DB /* SystemIdleTime.swift */,
 				D549A7671CCF66AE00F8F989 /* Activity.swift */,
@@ -229,6 +232,7 @@
 				543CF64D1CCE4721004156DB /* SystemIdleTime.swift in Sources */,
 				31F4203E1CCF80E500083124 /* ActivityNotifier.swift in Sources */,
 				D549A7681CCF66AE00F8F989 /* Activity.swift in Sources */,
+				31019F041CD02A94007437E9 /* main.swift in Sources */,
 				313D4B611CCE1245009E8DCC /* AppDelegate.swift in Sources */,
 				D549A76A1CCF66EE00F8F989 /* ActivityType.swift in Sources */,
 			);

@@ -5,7 +5,6 @@
 
 import Cocoa
 
-@NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
     let UI_UPDATE_INTERVAL = 1.0 // Seconds
     let IDLE_THRESHOLD = 3.0 // Seconds
