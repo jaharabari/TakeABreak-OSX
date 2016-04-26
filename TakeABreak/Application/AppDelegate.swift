@@ -48,9 +48,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
     func timerDidFire() {
+        let currentDate = NSDate()
         let idleTime = SystemIdleTime()!
         let active = isActive(idleTime, threshold: THRESHOLD)
-        let currentDate = NSDate()
         
         if let lastStateActive = lastStateActive {
             if lastStateActive != active {
@@ -69,15 +69,16 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         lastStateActive = active
         
         if let lastStateChange = lastStateChange {
-            let interval = NSDate().timeIntervalSinceDate(lastStateChange)
+            let interval = currentDate.timeIntervalSinceDate(lastStateChange)
+            
             if active {
                 if interval > NOTIFICATION_THRESHOLD {
                     notifier?.showNotification(activeInterval: interval)
                 }
-            }
-            else {
+            } else {
                 notifier?.hideNotification()
             }
+            
             if let formatter = intervalFormatter {
                 var title = active ? "Active: " : "Inactive: "
                 title += formatter.stringForInterval(interval)

@@ -1,7 +1,4 @@
 //
-//  File.swift
-//  TakeABreak
-//
 //  Created by Marcin Wieclawski on 25/04/16.
 //  Copyright © 2016 EL Passion. All rights reserved.
 //
@@ -11,9 +8,9 @@ import Foundation
 /**
  Returns number of seconds since system became idle
  
- returns: `Double?`: System idle time in seconds or nil when unable to retrieve it
+ returns: `NSTimeInterval?`: System idle time in seconds or nil when unable to retrieve it
  */
-public func SystemIdleTime() -> Double? {
+public func SystemIdleTime() -> NSTimeInterval? {
     var iterator: io_iterator_t = 0
     defer { IOObjectRelease(iterator) }
     guard IOServiceGetMatchingServices(kIOMasterPortDefault, IOServiceMatching("IOHIDSystem"), &iterator) == KERN_SUCCESS else { return nil }

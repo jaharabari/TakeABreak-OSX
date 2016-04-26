@@ -10,10 +10,8 @@
 		313D4B611CCE1245009E8DCC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 313D4B601CCE1245009E8DCC /* AppDelegate.swift */; };
 		313D4B631CCE1245009E8DCC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 313D4B621CCE1245009E8DCC /* Assets.xcassets */; };
 		313D4B661CCE1245009E8DCC /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 313D4B641CCE1245009E8DCC /* MainMenu.xib */; };
-		313D4B711CCE1245009E8DCC /* ActivityStatusTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 313D4B701CCE1245009E8DCC /* ActivityStatusTests.swift */; };
 		31F4203E1CCF80E500083124 /* ActivityNotifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31F4203D1CCF80E500083124 /* ActivityNotifier.swift */; };
 		31F420401CCF810200083124 /* IntervalFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31F4203F1CCF810200083124 /* IntervalFormatter.swift */; };
-		543CF64B1CCE45F6004156DB /* ActivityStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 543CF6471CCE44D2004156DB /* ActivityStatus.swift */; };
 		543CF64D1CCE4721004156DB /* SystemIdleTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 543CF64C1CCE4721004156DB /* SystemIdleTime.swift */; };
 		D549A7681CCF66AE00F8F989 /* Activity.swift in Sources */ = {isa = PBXBuildFile; fileRef = D549A7671CCF66AE00F8F989 /* Activity.swift */; };
 		D549A76A1CCF66EE00F8F989 /* ActivityType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D549A7691CCF66EE00F8F989 /* ActivityType.swift */; };
@@ -37,11 +35,9 @@
 		313D4B651CCE1245009E8DCC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		313D4B671CCE1245009E8DCC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		313D4B6C1CCE1245009E8DCC /* TakeABreakTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TakeABreakTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		313D4B701CCE1245009E8DCC /* ActivityStatusTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityStatusTests.swift; sourceTree = "<group>"; };
 		313D4B721CCE1245009E8DCC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		31F4203D1CCF80E500083124 /* ActivityNotifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityNotifier.swift; sourceTree = "<group>"; };
 		31F4203F1CCF810200083124 /* IntervalFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntervalFormatter.swift; sourceTree = "<group>"; };
-		543CF6471CCE44D2004156DB /* ActivityStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityStatus.swift; sourceTree = "<group>"; };
 		543CF64C1CCE4721004156DB /* SystemIdleTime.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SystemIdleTime.swift; sourceTree = "<group>"; };
 		D549A7671CCF66AE00F8F989 /* Activity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Activity.swift; sourceTree = "<group>"; };
 		D549A7691CCF66EE00F8F989 /* ActivityType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityType.swift; sourceTree = "<group>"; };
@@ -98,7 +94,6 @@
 		313D4B6F1CCE1245009E8DCC /* TakeABreakTests */ = {
 			isa = PBXGroup;
 			children = (
-				313D4B701CCE1245009E8DCC /* ActivityStatusTests.swift */,
 				313D4B721CCE1245009E8DCC /* Info.plist */,
 				D549A76B1CCF6A2F00F8F989 /* ActivityTests.swift */,
 			);
@@ -109,7 +104,6 @@
 			isa = PBXGroup;
 			children = (
 				313D4B601CCE1245009E8DCC /* AppDelegate.swift */,
-				543CF6471CCE44D2004156DB /* ActivityStatus.swift */,
 				543CF64C1CCE4721004156DB /* SystemIdleTime.swift */,
 				D549A7671CCF66AE00F8F989 /* Activity.swift */,
 				D549A7691CCF66EE00F8F989 /* ActivityType.swift */,
@@ -235,7 +229,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				543CF64B1CCE45F6004156DB /* ActivityStatus.swift in Sources */,
 				31F420401CCF810200083124 /* IntervalFormatter.swift in Sources */,
 				543CF64D1CCE4721004156DB /* SystemIdleTime.swift in Sources */,
 				31F4203E1CCF80E500083124 /* ActivityNotifier.swift in Sources */,
@@ -250,7 +243,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				D549A76C1CCF6A2F00F8F989 /* ActivityTests.swift in Sources */,
-				313D4B711CCE1245009E8DCC /* ActivityStatusTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
