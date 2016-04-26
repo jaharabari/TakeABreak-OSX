@@ -6,13 +6,14 @@
 import Cocoa
 
 @NSApplicationMain
-class AppDelegate: NSObject, NSApplicationDelegate {
+class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDelegate {
     @IBOutlet weak var statusMenu: NSMenu!
     
     var statusItem: NSStatusItem?
     var timer: NSTimer?
     var dateLastUpdate: NSDate?
     var activeInterval: Double = 0.0
+    var notification: NSUserNotification?
     
     func applicationDidFinishLaunching(notification: NSNotification) {
         dateLastUpdate = NSDate()
@@ -21,6 +22,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
         statusItem?.title = "Take A Brake"
         statusItem?.menu = statusMenu
+        
+        let notificationCenter = NSUserNotificationCenter.defaultUserNotificationCenter()
+        notificationCenter.delegate = self
     }
     
     func timerDidFire() {
@@ -37,9 +41,18 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             
             if status.isActive {
                 activeInterval = status.sinceInterval
+                if activeInterval > 5 && self.notification == nil {
+                    let notification = createNotification()
+                    showNotification(notification)
+                    self.notification = notification
+                }
                 statusItem?.title = "Active: \(formatTime(activeInterval))"
             } else {
                 activeInterval = 0
+                if let notification = self.notification {
+                    hideNotification(notification)
+                    self.notification = nil
+                }
                 statusItem?.title = "Idle: \(formatTime(idleInterval))"
             }
         } else {
@@ -65,4 +78,30 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         return formatter.stringFromDateComponents(components)!
     }
     
+    // MARK: - Notifications
+    
+    private func createNotification() -> NSUserNotification {
+        let notification = NSUserNotification()
+        notification.title = "Take a Break !!!"
+        notification.soundName = NSUserNotificationDefaultSoundName
+        
+        return notification
+    }
+    
+    private func showNotification(notification: NSUserNotification) {
+        let notificationCenter = NSUserNotificationCenter.defaultUserNotificationCenter()
+        notificationCenter.deliverNotification(notification)
+    }
+    
+    private func hideNotification(notification: NSUserNotification) {
+        let notificationCenter = NSUserNotificationCenter.defaultUserNotificationCenter()
+        notificationCenter.removeScheduledNotification(notification)
+        notificationCenter.removeDeliveredNotification(notification)
+    }
+    
+    // MARK: - NSUserNotificationCenterDelegate
+    
+    func userNotificationCenter(center: NSUserNotificationCenter, shouldPresentNotification notification: NSUserNotification) -> Bool {
+        return true
+    }
 }
