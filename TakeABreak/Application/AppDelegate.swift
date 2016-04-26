@@ -12,12 +12,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @IBOutlet weak var idleTimeMenuItem: NSMenuItem!
     
     let THRESHOLD = 3.0 // Seconds
+    let NOTIFICATION_THRESHOLD = 5.0 // Seconds
     
     var statusItem: NSStatusItem?
     var timer: NSTimer?
-    var dateLastUpdate: NSDate?
-    var activeInterval: Double = 0.0
-    var previousActivityStatus: ActivityStatus?
     var activityLog: [Activity]?
     
     var lastStateActive: Bool?
@@ -36,7 +34,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         )
         
         activityLog = [Activity]()
-        dateLastUpdate = NSDate()
         lastStateChange = NSDate()
         statusItem = NSStatusBar.systemStatusBar().statusItemWithLength(NSVariableStatusItemLength)
         timer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: #selector(timerDidFire), userInfo: nil, repeats: true)
@@ -70,51 +67,25 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         lastStateActive = active
         
-
-//        let delta = currentDate.timeIntervalSinceDate(dateLastUpdate!)
-//        
-//        if let idleInterval = SystemIdleTime() {
-//            let status = try! checkActivity(currentIdleInterval: idleInterval,
-//                                            previousActiveInterval: activeInterval,
-//                                            intervalSinceLastCheck: delta,
-//                                            inactivityThreshold: 3)
-//            
-//            switch status.type {
-//            case .Active:
-//                activeInterval = status.sinceInterval
-//                if activeInterval > 5 {
-//                    notifier?.showNotification(activeInterval: activeInterval)
-//                }
-//            case .Idle:
-//                activeInterval = 0
-//                notifier?.hideNotification()
-//            }
-//            
-//            if let statusItem = statusItem {
-//                updateStatusItem(statusItem, forStatus: status)
-//            }
-//        }
-//        else {
-//            statusItem?.title = "N/A"
-//        }
-        
+        if let lastStateChange = lastStateChange {
+            let interval = NSDate().timeIntervalSinceDate(lastStateChange)
+            if active {
+                if interval > NOTIFICATION_THRESHOLD {
+                    notifier?.showNotification(activeInterval: interval)
+                }
+            }
+            else {
+                notifier?.hideNotification()
+            }
+            if let formatter = intervalFormatter {
+                var title = active ? "Active: " : "Inactive: "
+                title += formatter.stringForInterval(interval)
+                statusItem?.title = title
+            }
+        }
     }
     
     @IBAction func quitClicked(sender: NSMenuItem) {
         NSApplication.sharedApplication().terminate(self)
-    }
-    
-    private func updateStatusItem(statusItem: NSStatusItem, forStatus status: ActivityStatus) {
-        guard let formatter = intervalFormatter else {
-            statusItem.title = "N/A"
-            return
-        }
-        
-        switch status.type {
-        case .Active:
-            statusItem.title = "Active: \(formatter.stringForInterval(status.sinceInterval))"
-        case .Idle:
-            statusItem.title = "Idle: \(formatter.stringForInterval(status.sinceInterval))"
-        }
     }
 }
