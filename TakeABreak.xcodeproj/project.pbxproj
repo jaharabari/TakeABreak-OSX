@@ -10,7 +10,6 @@
 		31019F021CD024E9007437E9 /* Then.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31019F011CD024E9007437E9 /* Then.swift */; };
 		313D4B611CCE1245009E8DCC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 313D4B601CCE1245009E8DCC /* AppDelegate.swift */; };
 		313D4B631CCE1245009E8DCC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 313D4B621CCE1245009E8DCC /* Assets.xcassets */; };
-		313D4B661CCE1245009E8DCC /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 313D4B641CCE1245009E8DCC /* MainMenu.xib */; };
 		31F4203E1CCF80E500083124 /* ActivityNotifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31F4203D1CCF80E500083124 /* ActivityNotifier.swift */; };
 		31F420401CCF810200083124 /* IntervalFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31F4203F1CCF810200083124 /* IntervalFormatter.swift */; };
 		543CF64D1CCE4721004156DB /* SystemIdleTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 543CF64C1CCE4721004156DB /* SystemIdleTime.swift */; };
@@ -35,7 +34,6 @@
 		313D4B5D1CCE1245009E8DCC /* TakeABreak.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TakeABreak.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		313D4B601CCE1245009E8DCC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		313D4B621CCE1245009E8DCC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		313D4B651CCE1245009E8DCC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		313D4B671CCE1245009E8DCC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		313D4B6C1CCE1245009E8DCC /* TakeABreakTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TakeABreakTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		313D4B721CCE1245009E8DCC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -90,7 +88,6 @@
 				313D4B7B1CCE12F7009E8DCC /* Application */,
 				313D4B671CCE1245009E8DCC /* Info.plist */,
 				313D4B7C1CCE130A009E8DCC /* Resources */,
-				313D4B7D1CCE131B009E8DCC /* UI */,
 			);
 			path = TakeABreak;
 			sourceTree = "<group>";
@@ -125,14 +122,6 @@
 				313D4B621CCE1245009E8DCC /* Assets.xcassets */,
 			);
 			path = Resources;
-			sourceTree = "<group>";
-		};
-		313D4B7D1CCE131B009E8DCC /* UI */ = {
-			isa = PBXGroup;
-			children = (
-				313D4B641CCE1245009E8DCC /* MainMenu.xib */,
-			);
-			path = UI;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -217,7 +206,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				313D4B631CCE1245009E8DCC /* Assets.xcassets in Resources */,
-				313D4B661CCE1245009E8DCC /* MainMenu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -263,17 +251,6 @@
 			targetProxy = 313D4B6D1CCE1245009E8DCC /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
-
-/* Begin PBXVariantGroup section */
-		313D4B641CCE1245009E8DCC /* MainMenu.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				313D4B651CCE1245009E8DCC /* Base */,
-			);
-			name = MainMenu.xib;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		313D4B731CCE1245009E8DCC /* Debug */ = {

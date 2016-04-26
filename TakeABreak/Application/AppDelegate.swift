@@ -7,21 +7,16 @@ import Cocoa
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
-    @IBOutlet weak var statusMenu: NSMenu!
-    @IBOutlet weak var activeTimeMenuItem: NSMenuItem!
-    @IBOutlet weak var idleTimeMenuItem: NSMenuItem!
-    
     let UI_UPDATE_INTERVAL = 1.0 // Seconds
     let IDLE_THRESHOLD = 3.0 // Seconds
     let NOTIFICATION_THRESHOLD = 5.0 // Seconds
     
-    var statusItem: NSStatusItem?
-    var activityLog = [Activity]()
     
     var activityWatcher: ActivityWatcher?
     var notifier: ActivityNotifier?
     var intervalFormatter: IntervalFormatter?
     var timer: NSTimer?
+    var activityLog = [Activity]()
     
     func applicationDidFinishLaunching(notification: NSNotification) {
         activityWatcher = ActivityWatcher(idleThreshold: IDLE_THRESHOLD,
@@ -38,9 +33,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             formatter: intervalFormatter
         )
         
-        statusItem        = NSStatusBar.systemStatusBar().statusItemWithLength(NSVariableStatusItemLength)
-        statusItem?.title = "Take A Brake"
-        statusItem?.menu  = statusMenu
         
         updateStatus()
     }
@@ -71,10 +63,5 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         var title = activityType == .Active ? "Active: " : "Idle: "
         title += formatter.stringForInterval(interval)
-        statusItem?.title = title
-    }
-    
-    @IBAction func quitClicked(sender: NSMenuItem) {
-        NSApplication.sharedApplication().terminate(self)
     }
 }
