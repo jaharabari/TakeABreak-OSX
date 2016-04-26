@@ -56,25 +56,24 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     @objc private func updateStatus() {
-        if let lastStateChange = activityWatcher?.lastStateChange {
-            let interval     = NSDate().timeIntervalSinceDate(lastStateChange)
-            let activityType = activityWatcher!.currentActivityType()
-            
-            switch activityType {
-            case .Active:
-                if interval > NOTIFICATION_THRESHOLD {
-                    notifier?.showNotification(activeInterval: interval)
-                }
-            case .Idle:
-                notifier?.hideNotification()
-            }
-            
-            if let formatter = intervalFormatter {
-                var title = activityType == .Active ? "Active: " : "Idle: "
-                title += formatter.stringForInterval(interval)
-                statusItem?.title = title
-            }
+        guard let lastStateChange = activityWatcher?.lastStateChange else { return }
+        
+        let interval     = NSDate().timeIntervalSinceDate(lastStateChange)
+        let activityType = activityWatcher!.currentActivityType()
+        
+        switch activityType {
+        case .Active where interval > NOTIFICATION_THRESHOLD:
+            notifier?.showNotification(activeInterval: interval)
+        case .Active: break
+        case .Idle:
+            notifier?.hideNotification()
         }
+        
+        guard let formatter = intervalFormatter else { return }
+        
+        var title = activityType == .Active ? "Active: " : "Idle: "
+        title += formatter.stringForInterval(interval)
+        statusItem?.title = title
     }
     
     @IBAction func quitClicked(sender: NSMenuItem) {
