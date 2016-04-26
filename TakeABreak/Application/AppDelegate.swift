@@ -49,14 +49,19 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                                             intervalSinceLastCheck: delta,
                                             inactivityThreshold: 3)
             
-            if status.isActive {
+            switch status.type {
+            case .Active:
                 activeInterval = status.sinceInterval
                 if activeInterval > 5 {
                     notifier?.showNotification(activeInterval: activeInterval)
                 }
-            } else {
+                
+                break
+            case .Idle:
                 activeInterval = 0
                 notifier?.hideNotification()
+                
+                break
             }
             
             if let statusItem = statusItem {
@@ -77,10 +82,16 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             statusItem.title = "N/A"
             return
         }
-        if status.isActive {
+        
+        switch status.type {
+        case .Active:
             statusItem.title = "Active: \(formatter.stringForInterval(status.sinceInterval))"
-        } else {
+            
+            break
+        case .Idle:
             statusItem.title = "Idle: \(formatter.stringForInterval(status.sinceInterval))"
+            
+            break
         }
     }
     
