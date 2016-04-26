@@ -14,16 +14,25 @@
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="TakeABreak" customModuleProvider="target">
             <connections>
+                <outlet property="activeTimeMenuItem" destination="8fx-5R-NXd" id="two-dU-tO6"/>
+                <outlet property="idleTimeMenuItem" destination="5Iv-PR-3KP" id="Jck-dF-t1z"/>
                 <outlet property="statusMenu" destination="OTH-QI-Q7c" id="Ij9-Yx-GL3"/>
             </connections>
         </customObject>
         <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
         <menu id="OTH-QI-Q7c">
             <items>
+                <menuItem title="Active Time" enabled="NO" id="8fx-5R-NXd">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                </menuItem>
+                <menuItem title="Idle Time" enabled="NO" id="5Iv-PR-3KP">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                </menuItem>
+                <menuItem isSeparatorItem="YES" id="uqm-19-ebI"/>
                 <menuItem title="Quit" id="PKk-hx-csL">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
-                        <action selector="menuClicked:" target="Voe-Tx-rLC" id="txc-75-WVf"/>
+                        <action selector="quitClicked:" target="Voe-Tx-rLC" id="t5H-i4-SMn"/>
                     </connections>
                 </menuItem>
             </items>
