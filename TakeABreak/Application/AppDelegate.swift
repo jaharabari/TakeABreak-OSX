@@ -6,7 +6,7 @@
 import Cocoa
 
 @NSApplicationMain
-class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDelegate {
+class AppDelegate: NSObject, NSApplicationDelegate {
     @IBOutlet weak var statusMenu: NSMenu!
     @IBOutlet weak var activeTimeMenuItem: NSMenuItem!
     @IBOutlet weak var idleTimeMenuItem: NSMenuItem!
@@ -15,19 +15,26 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
     var timer: NSTimer?
     var dateLastUpdate: NSDate?
     var activeInterval: Double = 0.0
-    var notification: NSUserNotification?
     var previousActivityType: ActivityType?
     
+    var notifier: ActivityNotifier?
+    var intervalFormatter: IntervalFormatter?
+    
     func applicationDidFinishLaunching(notification: NSNotification) {
+        let intervalFormatter = IntervalFormatter()
+        self.intervalFormatter = intervalFormatter
+        
+        notifier = ActivityNotifier(
+            notificationCenter: NSUserNotificationCenter.defaultUserNotificationCenter(),
+            formatter: intervalFormatter
+        )
+        
         dateLastUpdate = NSDate()
         statusItem = NSStatusBar.systemStatusBar().statusItemWithLength(NSVariableStatusItemLength)
         timer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: #selector(timerDidFire), userInfo: nil, repeats: true)
 
         statusItem?.title = "Take A Brake"
         statusItem?.menu = statusMenu
-        
-        let notificationCenter = NSUserNotificationCenter.defaultUserNotificationCenter()
-        notificationCenter.delegate = self
     }
     
     func timerDidFire() {
@@ -45,25 +52,19 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
             if status.isActive {
                 activeInterval = status.sinceInterval
                 if activeInterval > 5 {
-                    let notification = createNotification()
-                    notification.informativeText = "You are active for \(formatTime(activeInterval))"
-                    if self.notification == nil {
-                        notification.soundName = NSUserNotificationDefaultSoundName
-                    }
-                    showNotification(notification)
-                    self.notification = notification
+                    notifier?.showNotification(activeInterval: activeInterval)
                 }
-                statusItem?.title = "Active: \(formatTime(activeInterval))"
             } else {
                 activeInterval = 0
-                if let notification = self.notification {
-                    hideNotification(notification)
-                    self.notification = nil
-                }
-                statusItem?.title = "Idle: \(formatTime(idleInterval))"
+                notifier?.hideNotification()
             }
-        } else {
-            statusItem?.title = "Idle: N/A"
+            
+            if let statusItem = statusItem {
+                updateStatusItem(statusItem, forStatus: status)
+            }
+        }
+        else {
+            statusItem?.title = "N/A"
         }
     }
     
@@ -71,11 +72,30 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
         NSApplication.sharedApplication().terminate(self)
     }
     
-    private func formatTime(interval: Double) -> String {
-        // TODO: Add a guard against values larger than Max Int
-        
-        let formatter = NSDateComponentsFormatter()
+    private func updateStatusItem(statusItem: NSStatusItem, forStatus status: ActivityStatus) {
+        guard let formatter = intervalFormatter else {
+            statusItem.title = "N/A"
+            return
+        }
+        if status.isActive {
+            statusItem.title = "Active: \(formatter.stringForInterval(status.sinceInterval))"
+        } else {
+            statusItem.title = "Idle: \(formatter.stringForInterval(status.sinceInterval))"
+        }
+    }
+    
+}
+
+class IntervalFormatter {
+    private let formatter: NSDateComponentsFormatter
+    
+    init() {
+        formatter = NSDateComponentsFormatter()
         formatter.unitsStyle = .Abbreviated
+    }
+    
+    func stringForInterval(interval: Double) -> String {
+        // TODO: Add a guard against values larger than Max Int
         
         let components = NSDateComponents()
         components.second = Int(interval) % 60
@@ -84,8 +104,35 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
         
         return formatter.stringFromDateComponents(components)!
     }
+}
+
+class ActivityNotifier: NSObject, NSUserNotificationCenterDelegate {
+    private let notificationCenter: NSUserNotificationCenter
+    private let formatter: IntervalFormatter
+    private var notification: NSUserNotification?
     
-    // MARK: - Notifications
+    init(notificationCenter: NSUserNotificationCenter, formatter: IntervalFormatter) {
+        self.notificationCenter = notificationCenter
+        self.formatter = formatter
+        super.init()
+        self.notificationCenter.delegate = self
+    }
+    
+    func showNotification(activeInterval activeInterval: Double) {
+        let notification = createNotification()
+        notification.soundName = self.notification == nil ? NSUserNotificationDefaultSoundName : nil
+        notification.informativeText = "You are active for \(formatter.stringForInterval(activeInterval))"
+        
+        self.notification = notification
+        notificationCenter.deliverNotification(notification)
+    }
+    
+    func hideNotification() {
+        guard let notification = self.notification else { return }
+        notificationCenter.removeScheduledNotification(notification)
+        notificationCenter.removeDeliveredNotification(notification)
+        self.notification = nil
+    }
     
     private func createNotification() -> NSUserNotification {
         let notification = NSUserNotification()
@@ -93,17 +140,6 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
         notification.title = "Take a Break !!!"
         
         return notification
-    }
-    
-    private func showNotification(notification: NSUserNotification) {
-        let notificationCenter = NSUserNotificationCenter.defaultUserNotificationCenter()
-        notificationCenter.deliverNotification(notification)
-    }
-    
-    private func hideNotification(notification: NSUserNotification) {
-        let notificationCenter = NSUserNotificationCenter.defaultUserNotificationCenter()
-        notificationCenter.removeScheduledNotification(notification)
-        notificationCenter.removeDeliveredNotification(notification)
     }
     
     // MARK: - NSUserNotificationCenterDelegate
