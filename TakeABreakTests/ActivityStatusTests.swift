@@ -11,21 +11,21 @@ class TakeABreakTests: XCTestCase {
     func testShouldBeActiveForIdleTimeBelowThreshold() {
         let activityStatus = try? checkActivity(currentIdleInterval: 59, previousActiveInterval: 120, intervalSinceLastCheck: 30, inactivityThreshold: 60)
         
-        XCTAssertEqual(activityStatus?.isActive, true)
+        XCTAssertEqual(activityStatus?.type, .Active)
         XCTAssertEqual(activityStatus?.sinceInterval, 150)
     }
     
     func testShouldBeInactiveForIdleTimeEqualToThreshold() {
         let activityStatus = try? checkActivity(currentIdleInterval: 60, previousActiveInterval: 0, intervalSinceLastCheck: 30, inactivityThreshold: 60)
         
-        XCTAssertEqual(activityStatus?.isActive, false)
+        XCTAssertEqual(activityStatus?.type, .Idle)
         XCTAssertEqual(activityStatus?.sinceInterval, 60)
     }
     
     func testShouldBeInactiveForIdleTimeAboveThreshold() {
         let activityStatus = try? checkActivity(currentIdleInterval: 61, previousActiveInterval: 0, intervalSinceLastCheck: 30, inactivityThreshold: 60)
         
-        XCTAssertEqual(activityStatus?.isActive, false)
+        XCTAssertEqual(activityStatus?.type, .Idle)
         XCTAssertEqual(activityStatus?.sinceInterval, 61)
     }
     

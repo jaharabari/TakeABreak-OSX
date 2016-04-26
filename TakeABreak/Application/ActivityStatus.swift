@@ -11,14 +11,14 @@ import Foundation
 func checkActivity(currentIdleInterval idle: Double, previousActiveInterval active: Double, intervalSinceLastCheck lastCheck: Double, inactivityThreshold: Double) throws -> ActivityStatus {
     // guard idle < lastCheck || active == 0 else { throw CheckError.InvalidIdleTime }
     
-    let isActive = idle < inactivityThreshold
-    let sinceInterval = isActive ? active + lastCheck : idle
+    let type : ActivityType = idle < inactivityThreshold ? .Active : .Idle
+    let sinceInterval = type == .Active ? active + lastCheck : idle
     
-    return ActivityStatus(isActive: isActive, sinceInterval: sinceInterval)
+    return ActivityStatus(type: type, sinceInterval: sinceInterval)
 }
 
 struct ActivityStatus {
-    let isActive: Bool
+    let type: ActivityType
     let sinceInterval: Double
 }
 
@@ -29,5 +29,5 @@ enum CheckError: ErrorType {
 extension ActivityStatus: Equatable {}
 
 func ==(l: ActivityStatus, r: ActivityStatus) -> Bool {
-    return l.isActive == r.isActive && l.sinceInterval == r.sinceInterval
+    return l.type == r.type && l.sinceInterval == r.sinceInterval
 }
