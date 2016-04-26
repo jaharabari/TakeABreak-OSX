@@ -25,8 +25,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     func applicationDidFinishLaunching(notification: NSNotification) {
         activityWatcher = ActivityWatcher(idleThreshold: IDLE_THRESHOLD,
-                                          onActivityFinished: { self.activityLog?.append($0) })
-
+                                          onActivityFinished: { [weak self] in
+                                            self?.activityLog?.append($0)
+                                          })
         timer = createTimer()
         
         let intervalFormatter = IntervalFormatter()
