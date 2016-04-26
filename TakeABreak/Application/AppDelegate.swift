@@ -16,7 +16,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     let NOTIFICATION_THRESHOLD = 5.0 // Seconds
     
     var statusItem: NSStatusItem?
-    var activityLog: [Activity]?
+    var activityLog = [Activity]()
     
     var activityWatcher: ActivityWatcher?
     var notifier: ActivityNotifier?
@@ -26,7 +26,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func applicationDidFinishLaunching(notification: NSNotification) {
         activityWatcher = ActivityWatcher(idleThreshold: IDLE_THRESHOLD,
                                           onActivityFinished: { [weak self] in
-                                            self?.activityLog?.append($0)
+                                            self?.activityLog.append($0)
                                           })
         timer = createTimer()
         
@@ -37,8 +37,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             notificationCenter: NSUserNotificationCenter.defaultUserNotificationCenter(),
             formatter: intervalFormatter
         )
-        
-        activityLog = [Activity]()
         
         statusItem        = NSStatusBar.systemStatusBar().statusItemWithLength(NSVariableStatusItemLength)
         statusItem?.title = "Take A Brake"
