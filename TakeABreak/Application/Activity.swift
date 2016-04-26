@@ -8,14 +8,14 @@
 
 import Foundation
 
-class ActivityLogEntry {
+struct Activity {
     let type:   ActivityType
     let start:  NSDate
     let finish: NSDate
     
     init(type: ActivityType, start: NSDate, finish: NSDate) {
-        self.type   = type
-        self.start  = start
+        self.type = type
+        self.start = start
         self.finish = finish
     }
     
