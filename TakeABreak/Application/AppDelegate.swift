@@ -11,6 +11,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @IBOutlet weak var activeTimeMenuItem: NSMenuItem!
     @IBOutlet weak var idleTimeMenuItem: NSMenuItem!
     
+    let INTERVAL = 1.0 // Seconds
     let THRESHOLD = 3.0 // Seconds
     let NOTIFICATION_THRESHOLD = 5.0 // Seconds
     
@@ -36,7 +37,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         activityLog = [Activity]()
         lastStateChange = NSDate()
         statusItem = NSStatusBar.systemStatusBar().statusItemWithLength(NSVariableStatusItemLength)
-        timer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: #selector(timerDidFire), userInfo: nil, repeats: true)
+        timer = NSTimer.scheduledTimerWithTimeInterval(INTERVAL, target: self, selector: #selector(timerDidFire), userInfo: nil, repeats: true)
 
         statusItem?.title = "Take A Brake"
         statusItem?.menu = statusMenu
