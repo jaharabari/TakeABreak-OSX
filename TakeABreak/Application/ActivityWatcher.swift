@@ -46,19 +46,16 @@ class ActivityWatcher {
     @objc private func timerDidFire() {
         let currentDate  = NSDate()
         let activityType = currentActivityType()
+
+        defer { self.previousActivityType = activityType }
         
-        if let previousActivityType = previousActivityType {
-            if activityType != previousActivityType {
-                let finishDate = currentDate.dateByAddingTimeInterval(activityType == .Idle ? -idleThreshold : 0)
-                let activity   = Activity(type: activityType, start: lastStateChange!, finish: finishDate)
-                
-                onActivityFinished?(activity)
-                
-                lastStateChange = finishDate
-            }
-        }
-        
-        previousActivityType = activityType
+        guard let previousActivityType = previousActivityType where activityType != previousActivityType else { return }
+
+        let finishDate = currentDate.dateByAddingTimeInterval(activityType == .Idle ? -idleThreshold : 0)
+        let activity   = Activity(type: activityType, start: lastStateChange!, finish: finishDate)
+            
+        onActivityFinished?(activity)
+        lastStateChange = finishDate
     }
     
 }
