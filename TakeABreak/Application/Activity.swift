@@ -14,8 +14,8 @@ struct Activity {
     let finish: NSDate
     
     init(type: ActivityType, start: NSDate, finish: NSDate) {
-        self.type = type
-        self.start = start
+        self.type   = type
+        self.start  = start
         self.finish = finish
     }
     

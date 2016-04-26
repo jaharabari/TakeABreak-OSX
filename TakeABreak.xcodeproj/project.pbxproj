@@ -16,6 +16,7 @@
 		D549A7681CCF66AE00F8F989 /* Activity.swift in Sources */ = {isa = PBXBuildFile; fileRef = D549A7671CCF66AE00F8F989 /* Activity.swift */; };
 		D549A76A1CCF66EE00F8F989 /* ActivityType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D549A7691CCF66EE00F8F989 /* ActivityType.swift */; };
 		D549A76C1CCF6A2F00F8F989 /* ActivityTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D549A76B1CCF6A2F00F8F989 /* ActivityTests.swift */; };
+		D549A76E1CCFCD7C00F8F989 /* ActivityWatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = D549A76D1CCFCD7C00F8F989 /* ActivityWatcher.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,6 +43,7 @@
 		D549A7671CCF66AE00F8F989 /* Activity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Activity.swift; sourceTree = "<group>"; };
 		D549A7691CCF66EE00F8F989 /* ActivityType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityType.swift; sourceTree = "<group>"; };
 		D549A76B1CCF6A2F00F8F989 /* ActivityTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityTests.swift; sourceTree = "<group>"; };
+		D549A76D1CCFCD7C00F8F989 /* ActivityWatcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityWatcher.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +111,7 @@
 				D549A7691CCF66EE00F8F989 /* ActivityType.swift */,
 				31F4203D1CCF80E500083124 /* ActivityNotifier.swift */,
 				31F4203F1CCF810200083124 /* IntervalFormatter.swift */,
+				D549A76D1CCFCD7C00F8F989 /* ActivityWatcher.swift */,
 			);
 			path = Application;
 			sourceTree = "<group>";
@@ -229,6 +232,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D549A76E1CCFCD7C00F8F989 /* ActivityWatcher.swift in Sources */,
 				31F420401CCF810200083124 /* IntervalFormatter.swift in Sources */,
 				543CF64D1CCE4721004156DB /* SystemIdleTime.swift in Sources */,
 				31F4203E1CCF80E500083124 /* ActivityNotifier.swift in Sources */,

@@ -11,21 +11,24 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @IBOutlet weak var activeTimeMenuItem: NSMenuItem!
     @IBOutlet weak var idleTimeMenuItem: NSMenuItem!
     
-    let INTERVAL = 1.0 // Seconds
-    let THRESHOLD = 3.0 // Seconds
+    let UI_UPDATE_INTERVAL = 1.0 // Seconds
+    let IDLE_THRESHOLD = 3.0 // Seconds
     let NOTIFICATION_THRESHOLD = 5.0 // Seconds
     
     var statusItem: NSStatusItem?
-    var timer: NSTimer?
     var activityLog: [Activity]?
     
-    var lastStateActive: Bool?
-    var lastStateChange: NSDate?
-    
+    var activityWatcher: ActivityWatcher?
     var notifier: ActivityNotifier?
     var intervalFormatter: IntervalFormatter?
+    var timer: NSTimer?
     
     func applicationDidFinishLaunching(notification: NSNotification) {
+        activityWatcher = ActivityWatcher(idleThreshold: IDLE_THRESHOLD,
+                                          onActivityFinished: { self.activityLog?.append($0) })
+
+        timer = createTimer()
+        
         let intervalFormatter = IntervalFormatter()
         self.intervalFormatter = intervalFormatter
         
@@ -35,52 +38,38 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         )
         
         activityLog = [Activity]()
-        lastStateChange = NSDate()
-        statusItem = NSStatusBar.systemStatusBar().statusItemWithLength(NSVariableStatusItemLength)
-        timer = NSTimer.scheduledTimerWithTimeInterval(INTERVAL, target: self, selector: #selector(timerDidFire), userInfo: nil, repeats: true)
-
+        
+        statusItem        = NSStatusBar.systemStatusBar().statusItemWithLength(NSVariableStatusItemLength)
         statusItem?.title = "Take A Brake"
-        statusItem?.menu = statusMenu
+        statusItem?.menu  = statusMenu
+        
+        updateStatus()
     }
     
-    func isActive(idleTime: NSTimeInterval, threshold: NSTimeInterval) -> Bool {
-        return idleTime <= threshold
+    private func createTimer() -> NSTimer {
+        return NSTimer.scheduledTimerWithTimeInterval(UI_UPDATE_INTERVAL,
+                                                      target:   self,
+                                                      selector: #selector(updateStatus),
+                                                      userInfo: nil,
+                                                      repeats:  true)
     }
-
-    func timerDidFire() {
-        let currentDate = NSDate()
-        let idleTime = SystemIdleTime()!
-        let active = isActive(idleTime, threshold: THRESHOLD)
-        
-        if let lastStateActive = lastStateActive {
-            if lastStateActive != active {
-                let finishDate = currentDate.dateByAddingTimeInterval(active ? 0 : -THRESHOLD)
-                let activity = Activity(type: active ? .Active : .Idle,
-                                        start: lastStateChange!,
-                                        finish: finishDate)
-                activityLog?.append(activity)
-                
-                print("\(activity)")
-                
-                lastStateChange = finishDate
-            }
-        }
-        
-        lastStateActive = active
-        
-        if let lastStateChange = lastStateChange {
-            let interval = currentDate.timeIntervalSinceDate(lastStateChange)
+    
+    @objc private func updateStatus() {
+        if let lastStateChange = activityWatcher?.lastStateChange {
+            let interval     = NSDate().timeIntervalSinceDate(lastStateChange)
+            let activityType = activityWatcher!.currentActivityType()
             
-            if active {
+            switch activityType {
+            case .Active:
                 if interval > NOTIFICATION_THRESHOLD {
                     notifier?.showNotification(activeInterval: interval)
                 }
-            } else {
+            case .Idle:
                 notifier?.hideNotification()
             }
             
             if let formatter = intervalFormatter {
-                var title = active ? "Active: " : "Inactive: "
+                var title = activityType == .Active ? "Active: " : "Idle: "
                 title += formatter.stringForInterval(interval)
                 statusItem?.title = title
             }
