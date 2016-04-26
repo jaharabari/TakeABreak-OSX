@@ -46,6 +46,9 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
                 if activeInterval > 5 {
                     let notification = createNotification()
                     notification.informativeText = "You are active for \(formatTime(activeInterval))"
+                    if self.notification == nil {
+                        notification.soundName = NSUserNotificationDefaultSoundName
+                    }
                     showNotification(notification)
                     self.notification = notification
                 }
@@ -87,7 +90,6 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
         let notification = NSUserNotification()
         notification.identifier = NSUUID().UUIDString
         notification.title = "Take a Break !!!"
-        notification.soundName = NSUserNotificationDefaultSoundName
         
         return notification
     }
