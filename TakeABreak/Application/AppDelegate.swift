@@ -16,6 +16,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
     var dateLastUpdate: NSDate?
     var activeInterval: Double = 0.0
     var notification: NSUserNotification?
+    var previousActivityType: ActivityType?
     
     func applicationDidFinishLaunching(notification: NSNotification) {
         dateLastUpdate = NSDate()
