@@ -10,13 +10,13 @@ class ActivityLogEntryTests: XCTestCase {
     
     func testComputesDurationBetweenStartAndFinish() {
         let dateFormatter = NSDateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss.SSS"
         
         let logEntry = ActivityLogEntry(type: ActivityType.Active,
-                                        start: dateFormatter.dateFromString("2016-04-26 11:26:42")!,
-                                        finish: dateFormatter.dateFromString("2016-04-27 09:10:21")!)
+                                        start: dateFormatter.dateFromString("2016-04-26 11:26:42.123")!,
+                                        finish: dateFormatter.dateFromString("2016-04-27 09:10:21.987")!)
         
-        XCTAssertEqual(78219, logEntry.duration())
+        XCTAssertEqualWithAccuracy(78219.864, logEntry.duration(), accuracy: 0.0001)
     }
     
 }
