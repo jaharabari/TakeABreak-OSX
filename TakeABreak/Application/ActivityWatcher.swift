@@ -52,9 +52,9 @@ class ActivityWatcher {
         guard let previousActivityType = previousActivityType where activityType != previousActivityType else { return }
 
         let finishDate = currentDate.dateByAddingTimeInterval(activityType == .Idle ? -idleThreshold : 0)
-        let activity   = Activity(type: activityType, start: lastStateChange!, finish: finishDate)
+        let finishedActivity = Activity(type: previousActivityType, start: lastStateChange!, finish: finishDate)
             
-        onActivityFinished?(activity)
+        onActivityFinished?(finishedActivity)
         lastStateChange = finishDate
     }
     
