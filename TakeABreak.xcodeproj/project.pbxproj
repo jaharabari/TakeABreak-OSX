@@ -13,6 +13,10 @@
 		313D4B711CCE1245009E8DCC /* ActivityStatusTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 313D4B701CCE1245009E8DCC /* ActivityStatusTests.swift */; };
 		543CF64B1CCE45F6004156DB /* ActivityStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 543CF6471CCE44D2004156DB /* ActivityStatus.swift */; };
 		543CF64D1CCE4721004156DB /* SystemIdleTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 543CF64C1CCE4721004156DB /* SystemIdleTime.swift */; };
+		D549A7661CCF668100F8F989 /* ActivityLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = D549A7651CCF668100F8F989 /* ActivityLog.swift */; };
+		D549A7681CCF66AE00F8F989 /* ActivityLogEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = D549A7671CCF66AE00F8F989 /* ActivityLogEntry.swift */; };
+		D549A76A1CCF66EE00F8F989 /* ActivityType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D549A7691CCF66EE00F8F989 /* ActivityType.swift */; };
+		D549A76C1CCF6A2F00F8F989 /* ActivityLogEntryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D549A76B1CCF6A2F00F8F989 /* ActivityLogEntryTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +40,10 @@
 		313D4B721CCE1245009E8DCC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		543CF6471CCE44D2004156DB /* ActivityStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityStatus.swift; sourceTree = "<group>"; };
 		543CF64C1CCE4721004156DB /* SystemIdleTime.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SystemIdleTime.swift; sourceTree = "<group>"; };
+		D549A7651CCF668100F8F989 /* ActivityLog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityLog.swift; sourceTree = "<group>"; };
+		D549A7671CCF66AE00F8F989 /* ActivityLogEntry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityLogEntry.swift; sourceTree = "<group>"; };
+		D549A7691CCF66EE00F8F989 /* ActivityType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityType.swift; sourceTree = "<group>"; };
+		D549A76B1CCF6A2F00F8F989 /* ActivityLogEntryTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityLogEntryTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,6 +98,7 @@
 			children = (
 				313D4B701CCE1245009E8DCC /* ActivityStatusTests.swift */,
 				313D4B721CCE1245009E8DCC /* Info.plist */,
+				D549A76B1CCF6A2F00F8F989 /* ActivityLogEntryTests.swift */,
 			);
 			path = TakeABreakTests;
 			sourceTree = "<group>";
@@ -100,6 +109,9 @@
 				313D4B601CCE1245009E8DCC /* AppDelegate.swift */,
 				543CF6471CCE44D2004156DB /* ActivityStatus.swift */,
 				543CF64C1CCE4721004156DB /* SystemIdleTime.swift */,
+				D549A7651CCF668100F8F989 /* ActivityLog.swift */,
+				D549A7671CCF66AE00F8F989 /* ActivityLogEntry.swift */,
+				D549A7691CCF66EE00F8F989 /* ActivityType.swift */,
 			);
 			path = Application;
 			sourceTree = "<group>";
@@ -222,7 +234,10 @@
 			files = (
 				543CF64B1CCE45F6004156DB /* ActivityStatus.swift in Sources */,
 				543CF64D1CCE4721004156DB /* SystemIdleTime.swift in Sources */,
+				D549A7681CCF66AE00F8F989 /* ActivityLogEntry.swift in Sources */,
 				313D4B611CCE1245009E8DCC /* AppDelegate.swift in Sources */,
+				D549A76A1CCF66EE00F8F989 /* ActivityType.swift in Sources */,
+				D549A7661CCF668100F8F989 /* ActivityLog.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -230,6 +245,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D549A76C1CCF6A2F00F8F989 /* ActivityLogEntryTests.swift in Sources */,
 				313D4B711CCE1245009E8DCC /* ActivityStatusTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
