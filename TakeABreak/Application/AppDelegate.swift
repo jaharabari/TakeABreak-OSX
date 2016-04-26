@@ -8,6 +8,8 @@ import Cocoa
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDelegate {
     @IBOutlet weak var statusMenu: NSMenu!
+    @IBOutlet weak var activeTimeMenuItem: NSMenuItem!
+    @IBOutlet weak var idleTimeMenuItem: NSMenuItem!
     
     var statusItem: NSStatusItem?
     var timer: NSTimer?
@@ -60,7 +62,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
         }
     }
     
-    @IBAction func menuClicked(sender: NSMenuItem) {
+    @IBAction func quitClicked(sender: NSMenuItem) {
         NSApplication.sharedApplication().terminate(self)
     }
     
