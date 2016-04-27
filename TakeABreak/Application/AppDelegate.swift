@@ -51,30 +51,46 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     @objc private func timerDidFire() {
         updateStatus()
+        updateNotification()
         updateIntervalsSum()
     }
     
     private func updateStatus() {
-        guard let lastStateChange = activityWatcher?.lastStateChange else { return }
+        guard let activityWatcher = activityWatcher else { return }
+        guard let lastStateChange = activityWatcher.lastStateChange else { return }
         
-        let interval     = NSDate().timeIntervalSinceDate(lastStateChange)
-        let activityType = activityWatcher!.currentActivityType()
-        
-        switch activityType {
-        case .Active where interval > NOTIFICATION_THRESHOLD:
-            notifier?.showNotification(activeInterval: interval)
-        case .Active: break
-        case .Idle:
-            notifier?.hideNotification()
-        }
+        let currentActivityType = activityWatcher.currentActivityType()
+        let currentActivityInterval = NSDate().timeIntervalSinceDate(lastStateChange)
         
         guard let formatter = intervalFormatter else { return }
         
-        var title = activityType == .Active ? "Active: " : "Idle: "
-        title += formatter.stringForInterval(interval)
-        statusBarMenu?.title = title
+        statusBarMenu?.title = {
+            var title = ""
+            switch currentActivityType {
+            case .Active: title += "Active: "
+            case .Idle: title += "Idle: "
+            }
+            title += formatter.stringForInterval(currentActivityInterval)
+            
+            return title
+        }()
+    }
+    
+    private func updateNotification() {
+        guard let activityWatcher = activityWatcher else { return }
+        guard let lastStateChange = activityWatcher.lastStateChange else { return }
+        guard let notifier = notifier else { return }
         
-        updateIntervalsSum()
+        let currentActivityType = activityWatcher.currentActivityType()
+        let currentActivityInterval = NSDate().timeIntervalSinceDate(lastStateChange)
+        
+        switch currentActivityType {
+        case .Active where currentActivityInterval > NOTIFICATION_THRESHOLD:
+            notifier.showNotification(activeInterval: currentActivityInterval)
+        case .Active: break
+        case .Idle:
+            notifier.hideNotification()
+        }
     }
     
     private func updateIntervalsSum() {
