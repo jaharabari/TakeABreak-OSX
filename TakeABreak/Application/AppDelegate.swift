@@ -55,6 +55,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         updateIntervalsSum()
     }
     
+    // TODO: Extract (UI updates)
     private func updateStatus() {
         guard let activityWatcher = activityWatcher else { return }
         guard let lastStateChange = activityWatcher.lastStateChange else { return }
@@ -76,6 +77,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }()
     }
     
+    // TODO: Extract (UI updates)
     private func updateNotification() {
         guard let activityWatcher = activityWatcher else { return }
         guard let lastStateChange = activityWatcher.lastStateChange else { return }
@@ -93,6 +95,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
     }
     
+    // TODO: Extract (UI updates)
     private func updateIntervalsSum() {
         guard statusBarMenu?.isMenuOpen == true else { return }
         guard let formatter = intervalFormatter else { return }
@@ -105,6 +108,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         statusBarMenu?.activeTime = formatter.stringForInterval(activeInterval)
         statusBarMenu?.idleTime = formatter.stringForInterval(idleInterval)
+        
+        // FIXME: menu does not update when it's open
     }
 }
 
