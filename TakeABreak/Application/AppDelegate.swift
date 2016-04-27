@@ -75,3 +75,9 @@ extension AppDelegate: StatusBarMenuDelegate {
         NSApplication.sharedApplication().terminate(self)
     }
 }
+
+extension SequenceType where Generator.Element == Activity {
+    func durationSumForType(type: ActivityType) -> NSTimeInterval {
+        return filter { $0.type == type } .reduce(0) { $0 + $1.duration() }
+    }
+}
