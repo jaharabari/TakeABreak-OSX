@@ -38,17 +38,23 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
         
         updateStatus()
+        updateIntervalsSum()
     }
     
     private func createTimer() -> NSTimer {
         return NSTimer.scheduledTimerWithTimeInterval(UI_UPDATE_INTERVAL,
                                                       target:   self,
-                                                      selector: #selector(updateStatus),
+                                                      selector: #selector(timerDidFire),
                                                       userInfo: nil,
                                                       repeats:  true)
     }
     
-    @objc private func updateStatus() {
+    @objc private func timerDidFire() {
+        updateStatus()
+        updateIntervalsSum()
+    }
+    
+    private func updateStatus() {
         guard let lastStateChange = activityWatcher?.lastStateChange else { return }
         
         let interval     = NSDate().timeIntervalSinceDate(lastStateChange)
@@ -67,12 +73,32 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         var title = activityType == .Active ? "Active: " : "Idle: "
         title += formatter.stringForInterval(interval)
         statusBarMenu?.title = title
+        
+        updateIntervalsSum()
+    }
+    
+    private func updateIntervalsSum() {
+        guard statusBarMenu?.isMenuOpen == true else { return }
+        guard let formatter = intervalFormatter else { return }
+        guard let currentActivityType = activityWatcher?.currentActivityType() else { return }
+        guard let lastStateChange = activityWatcher?.lastStateChange else { return }
+        
+        let currentActivityInterval = NSDate().timeIntervalSinceDate(lastStateChange)
+        let activeInterval = activityLog.durationSumForType(.Active) + (currentActivityType == .Active ? currentActivityInterval : 0)
+        let idleInterval = activityLog.durationSumForType(.Idle) + (currentActivityType == .Idle ? currentActivityInterval : 0)
+        
+        statusBarMenu?.activeTime = formatter.stringForInterval(activeInterval)
+        statusBarMenu?.idleTime = formatter.stringForInterval(idleInterval)
     }
 }
 
 extension AppDelegate: StatusBarMenuDelegate {
     func statusBarMenuDidSelectQuit() {
         NSApplication.sharedApplication().terminate(self)
+    }
+    
+    func statusBarMenuWillOpen() {
+        updateIntervalsSum()
     }
 }
 
