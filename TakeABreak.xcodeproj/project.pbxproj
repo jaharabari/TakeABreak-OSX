@@ -108,15 +108,15 @@
 		313D4B7B1CCE12F7009E8DCC /* Application */ = {
 			isa = PBXGroup;
 			children = (
-				31019F031CD02A94007437E9 /* main.swift */,
-				313D4B601CCE1245009E8DCC /* AppDelegate.swift */,
-				543CF64C1CCE4721004156DB /* SystemIdleTime.swift */,
 				D549A7671CCF66AE00F8F989 /* Activity.swift */,
-				D549A7691CCF66EE00F8F989 /* ActivityType.swift */,
 				31F4203D1CCF80E500083124 /* ActivityNotifier.swift */,
-				31F4203F1CCF810200083124 /* IntervalFormatter.swift */,
+				D549A7691CCF66EE00F8F989 /* ActivityType.swift */,
 				D549A76D1CCFCD7C00F8F989 /* ActivityWatcher.swift */,
+				313D4B601CCE1245009E8DCC /* AppDelegate.swift */,
+				31F4203F1CCF810200083124 /* IntervalFormatter.swift */,
+				31019F031CD02A94007437E9 /* main.swift */,
 				31019EFF1CD02428007437E9 /* SatusBarMenu.swift */,
+				543CF64C1CCE4721004156DB /* SystemIdleTime.swift */,
 				31019F011CD024E9007437E9 /* Then.swift */,
 			);
 			path = Application;

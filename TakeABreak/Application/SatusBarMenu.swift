@@ -10,7 +10,10 @@ class StatusBarMenu: NSObject {
     private var statusItem: NSStatusItem
     private var activeTimeItem = NSMenuItem()
     private var idleTimeItem = NSMenuItem()
+    private var totalTimeItem = NSMenuItem()
     private(set) var isMenuOpen = false
+    var data = ActivityWatcher()
+    
     
     init(statusBar: NSStatusBar) {
         statusItem = statusBar.statusItemWithLength(NSVariableStatusItemLength)
@@ -24,6 +27,19 @@ class StatusBarMenu: NSObject {
         statusItem.menu?.delegate = self
         statusItem.menu?.addItem(activeTimeItem)
         statusItem.menu?.addItem(idleTimeItem)
+        statusItem.menu?.addItem(totalTimeItem)
+        statusItem.menu?.addItem(NSMenuItem.separatorItem())
+        statusItem.menu?.addItem(NSMenuItem().then {
+            $0.title = "Save Activity Log On Desktop"
+            $0.target = self
+            $0.action = #selector(saveLog)
+            })
+        statusItem.menu?.addItem(NSMenuItem.separatorItem())
+        statusItem.menu?.addItem(NSMenuItem().then {
+            $0.title = "Relax"
+            $0.target = self
+            $0.action = #selector(sleepNow)
+            })
         statusItem.menu?.addItem(NSMenuItem.separatorItem())
         statusItem.menu?.addItem(NSMenuItem().then {
             $0.title = "Quit"
@@ -33,6 +49,7 @@ class StatusBarMenu: NSObject {
         
         updateActiveTime()
         updateIdleTime()
+        updateTotalTime()
     }
     
     var title: String? {
@@ -48,6 +65,11 @@ class StatusBarMenu: NSObject {
         didSet { updateIdleTime() }
     }
     
+    
+    var totalTime: String? {
+        didSet { updateTotalTime() }
+    }
+
     private func updateActiveTime() {
         if let time = activeTime {
             activeTimeItem.title = "Active Time: \(time)"
@@ -66,9 +88,44 @@ class StatusBarMenu: NSObject {
         }
     }
     
+    private func updateTotalTime() {
+        if let time = totalTime {
+            totalTimeItem.title = "Total Time: \(time)"
+        }
+        else {
+            totalTimeItem.title = "Total Time: N/A"
+        }
+    }
+    
     @objc private func quitAction() {
         delegate?.statusBarMenuDidSelectQuit()
     }
+    
+    @objc private func saveLog() {
+        let stringFromArray = data.activityData.joinWithSeparator("\n")
+        
+        func getDocumentsDirectory() -> NSString {
+            let paths = NSSearchPathForDirectoriesInDomains(.DesktopDirectory, .UserDomainMask, true)
+            let documentsDirectory = paths[0]
+            return documentsDirectory
+        }
+        let path = getDocumentsDirectory().stringByAppendingPathComponent("ActivityLog.txt")
+        let dataLog = stringFromArray
+        do {
+            try dataLog.writeToFile(path, atomically: false, encoding: NSUTF8StringEncoding)
+        }
+        catch let error as NSError {
+            print("Ooops! Something went wrong: \(error)")
+        }
+    
+    }
+    @objc private func sleepNow() {
+        let task = NSTask()
+        task.launchPath = "/usr/bin/pmset"
+        task.arguments = ["sleepnow"]
+        task.launch()
+    }
+    
 }
 
 protocol StatusBarMenuDelegate: class {

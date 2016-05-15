@@ -16,6 +16,8 @@ class ActivityWatcher {
     private var timer: NSTimer?
     private var previousActivityType: ActivityType?
     
+    var activityData = [String]()
+    
     var lastStateChange: NSDate?
 
     init(updateInterval: NSTimeInterval = DEFAULT_UPDATE_INTERVAL,
@@ -29,13 +31,14 @@ class ActivityWatcher {
         timer           = createTimer()
         
         timerDidFire()
+        
     }
     
     func currentActivityType() -> ActivityType {
         return SystemIdleTime()! < idleThreshold ? .Active : .Idle
     }
     
-    private func createTimer() -> NSTimer {
+    func createTimer() -> NSTimer {
         return NSTimer.scheduledTimerWithTimeInterval(updateInterval,
                                                       target:   self,
                                                       selector: #selector(timerDidFire),
@@ -46,7 +49,7 @@ class ActivityWatcher {
     @objc private func timerDidFire() {
         let currentDate  = NSDate()
         let activityType = currentActivityType()
-
+        
         defer { self.previousActivityType = activityType }
         
         guard let previousActivityType = previousActivityType where activityType != previousActivityType else { return }
@@ -56,6 +59,15 @@ class ActivityWatcher {
             
         onActivityFinished?(finishedActivity)
         lastStateChange = finishDate
+        
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "HH:mm:ss dd/MM/yyyy"
+        let stringFinishDate = dateFormatter.stringFromDate(finishDate)
+        
+        activityData.append((activityType.rawValue) + " at " + (stringFinishDate))
+        
+        
+        
     }
     
 }

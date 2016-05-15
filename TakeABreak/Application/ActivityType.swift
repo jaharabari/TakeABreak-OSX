@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum ActivityType {
-    case Active
-    case Idle
+enum ActivityType : String {
+    case Active = "Active"
+    case Idle = "Idle"
 }

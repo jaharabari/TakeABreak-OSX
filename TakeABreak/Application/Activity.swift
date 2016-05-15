@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Activity {
+class Activity {
     let type:   ActivityType
     let start:  NSDate
     let finish: NSDate
@@ -21,5 +21,6 @@ struct Activity {
     
     func duration() -> NSTimeInterval {
         return finish.timeIntervalSinceDate(start)
+        }
     }
-}
+

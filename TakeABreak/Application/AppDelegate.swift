@@ -39,6 +39,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         updateStatus()
         updateIntervalsSum()
+        
     }
     
     private func createTimer() -> NSTimer {
@@ -48,12 +49,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                                                       userInfo: nil,
                                                       repeats:  true)
     }
-    
     @objc private func timerDidFire() {
         updateStatus()
         updateNotification()
         updateIntervalsSum()
     }
+    
     
     // TODO: Extract (UI updates)
     private func updateStatus() {
@@ -105,13 +106,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         let currentActivityInterval = NSDate().timeIntervalSinceDate(lastStateChange)
         let activeInterval = activityLog.durationSumForType(.Active) + (currentActivityType == .Active ? currentActivityInterval : 0)
         let idleInterval = activityLog.durationSumForType(.Idle) + (currentActivityType == .Idle ? currentActivityInterval : 0)
+        let totalTime = activeInterval + idleInterval
         
         statusBarMenu?.activeTime = formatter.stringForInterval(activeInterval)
         statusBarMenu?.idleTime = formatter.stringForInterval(idleInterval)
-        
-        // FIXME: menu does not update when it's open
-    }
-}
+        statusBarMenu?.totalTime = formatter.stringForInterval(totalTime)
+                
+        }
+   }
 
 extension AppDelegate: StatusBarMenuDelegate {
     func statusBarMenuDidSelectQuit() {
@@ -120,11 +122,18 @@ extension AppDelegate: StatusBarMenuDelegate {
     
     func statusBarMenuWillOpen() {
         updateIntervalsSum()
+        
+        // FIXME: menu does not update when it's open
+        // possible solution? NSRunLoop.mainRunLoop().addTimer(timer!, forMode: NSRunLoopCommonModes)
+        // I can't set a good timer
+
     }
+
 }
 
 extension SequenceType where Generator.Element == Activity {
     func durationSumForType(type: ActivityType) -> NSTimeInterval {
         return filter { $0.type == type } .reduce(0) { $0 + $1.duration() }
     }
+    
 }
