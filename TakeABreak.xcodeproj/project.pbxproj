@@ -180,9 +180,11 @@
 				TargetAttributes = {
 					313D4B5C1CCE1245009E8DCC = {
 						CreatedOnToolsVersion = 7.3;
+						LastSwiftMigration = 0830;
 					};
 					313D4B6B1CCE1245009E8DCC = {
 						CreatedOnToolsVersion = 7.3;
+						LastSwiftMigration = 0830;
 						TestTargetID = 313D4B5C1CCE1245009E8DCC;
 					};
 				};
@@ -352,6 +354,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.elpassion.TakeABreak;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -364,6 +367,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.elpassion.TakeABreak;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -376,6 +380,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.elpassion.TakeABreakTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TakeABreak.app/Contents/MacOS/TakeABreak";
 			};
 			name = Debug;
@@ -389,6 +394,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.elpassion.TakeABreakTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TakeABreak.app/Contents/MacOS/TakeABreak";
 			};
 			name = Release;

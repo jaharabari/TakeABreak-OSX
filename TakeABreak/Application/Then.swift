@@ -24,7 +24,7 @@ import Foundation
 
 public protocol Then {}
 
-extension Then {
+extension Then where Self: Any {
     
     /// Makes it available to set properties with closures.
     ///
@@ -33,7 +33,7 @@ extension Then {
     ///         $0.textColor = UIColor.blackColor()
     ///         $0.text = "Hello, World!"
     ///     }
-    public func then(@noescape block: inout Self -> Void) -> Self {
+    public func then(_ block: (inout Self) -> Void) -> Self {
         var copy = self
         block(&copy)
         return copy

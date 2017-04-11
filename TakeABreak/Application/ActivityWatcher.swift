@@ -9,25 +9,25 @@ class ActivityWatcher {
     static let DEFAULT_UPDATE_INTERVAL = 0.25 // Seconds
     static let DEFAULT_IDLE_THRESHOLD  = 3.00 // Seconds
     
-    private let updateInterval: NSTimeInterval
-    private let idleThreshold: NSTimeInterval
-    private let onActivityFinished: (Activity -> Void)?
+    fileprivate let updateInterval: TimeInterval
+    fileprivate let idleThreshold: TimeInterval
+    fileprivate let onActivityFinished: ((Activity) -> Void)?
     
-    private var timer: NSTimer?
-    private var previousActivityType: ActivityType?
+    fileprivate var timer: Timer?
+    fileprivate var previousActivityType: ActivityType?
     
     var activityData = [String]()
     
-    var lastStateChange: NSDate?
+    var lastStateChange: Date?
 
-    init(updateInterval: NSTimeInterval = DEFAULT_UPDATE_INTERVAL,
-         idleThreshold: NSTimeInterval = DEFAULT_IDLE_THRESHOLD,
-         onActivityFinished: (Activity -> Void)? = nil) {
+    init(updateInterval: TimeInterval = DEFAULT_UPDATE_INTERVAL,
+         idleThreshold: TimeInterval = DEFAULT_IDLE_THRESHOLD,
+         onActivityFinished: ((Activity) -> Void)? = nil) {
         self.updateInterval     = updateInterval
         self.idleThreshold      = idleThreshold
         self.onActivityFinished = onActivityFinished
         
-        lastStateChange = NSDate()
+        lastStateChange = Date()
         timer           = createTimer()
         
         timerDidFire()
@@ -38,31 +38,31 @@ class ActivityWatcher {
         return SystemIdleTime()! < idleThreshold ? .Active : .Idle
     }
     
-    func createTimer() -> NSTimer {
-        return NSTimer.scheduledTimerWithTimeInterval(updateInterval,
+    func createTimer() -> Timer {
+        return Timer.scheduledTimer(timeInterval: updateInterval,
                                                       target:   self,
                                                       selector: #selector(timerDidFire),
                                                       userInfo: nil,
                                                       repeats:  true)
     }
 
-    @objc private func timerDidFire() {
-        let currentDate  = NSDate()
+    @objc fileprivate func timerDidFire() {
+        let currentDate  = Date()
         let activityType = currentActivityType()
         
         defer { self.previousActivityType = activityType }
         
-        guard let previousActivityType = previousActivityType where activityType != previousActivityType else { return }
+        guard let previousActivityType = previousActivityType, activityType != previousActivityType else { return }
 
-        let finishDate = currentDate.dateByAddingTimeInterval(activityType == .Idle ? -idleThreshold : 0)
+        let finishDate = currentDate.addingTimeInterval(activityType == .Idle ? -idleThreshold : 0)
         let finishedActivity = Activity(type: previousActivityType, start: lastStateChange!, finish: finishDate)
             
         onActivityFinished?(finishedActivity)
         lastStateChange = finishDate
         
-        let dateFormatter = NSDateFormatter()
+        let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "HH:mm:ss dd/MM/yyyy"
-        let stringFinishDate = dateFormatter.stringFromDate(finishDate)
+        let stringFinishDate = dateFormatter.string(from: finishDate)
         
         activityData.append((activityType.rawValue) + " at " + (stringFinishDate))
         

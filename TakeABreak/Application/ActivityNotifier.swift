@@ -6,9 +6,9 @@
 import Foundation
 
 class ActivityNotifier: NSObject, NSUserNotificationCenterDelegate {
-    private let notificationCenter: NSUserNotificationCenter
-    private let formatter: IntervalFormatter
-    private var notification: NSUserNotification?
+    fileprivate let notificationCenter: NSUserNotificationCenter
+    fileprivate let formatter: IntervalFormatter
+    fileprivate var notification: NSUserNotification?
     
     init(notificationCenter: NSUserNotificationCenter, formatter: IntervalFormatter) {
         self.notificationCenter = notificationCenter
@@ -17,13 +17,13 @@ class ActivityNotifier: NSObject, NSUserNotificationCenterDelegate {
         self.notificationCenter.delegate = self
     }
     
-    func showNotification(activeInterval activeInterval: Double) {
+    func showNotification(activeInterval: Double) {
         let notification = createNotification()
         notification.soundName = self.notification == nil ? NSUserNotificationDefaultSoundName : nil
         notification.informativeText = "You are active for \(formatter.stringForInterval(activeInterval))"
         
         self.notification = notification
-        notificationCenter.deliverNotification(notification)
+        notificationCenter.deliver(notification)
     }
     
     func hideNotification() {
@@ -33,9 +33,9 @@ class ActivityNotifier: NSObject, NSUserNotificationCenterDelegate {
         self.notification = nil
     }
     
-    private func createNotification() -> NSUserNotification {
+    fileprivate func createNotification() -> NSUserNotification {
         let notification = NSUserNotification()
-        notification.identifier = NSUUID().UUIDString
+        notification.identifier = UUID().uuidString
         notification.title = "Take a Break !!!"
         
         return notification
@@ -43,7 +43,7 @@ class ActivityNotifier: NSObject, NSUserNotificationCenterDelegate {
     
     // MARK: - NSUserNotificationCenterDelegate
     
-    func userNotificationCenter(center: NSUserNotificationCenter, shouldPresentNotification notification: NSUserNotification) -> Bool {
+    func userNotificationCenter(_ center: NSUserNotificationCenter, shouldPresent notification: NSUserNotification) -> Bool {
         return true
     }
 }

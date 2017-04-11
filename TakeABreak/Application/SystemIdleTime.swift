@@ -10,7 +10,7 @@ import Foundation
  
  returns: `NSTimeInterval?`: System idle time in seconds or nil when unable to retrieve it
  */
-public func SystemIdleTime() -> NSTimeInterval? {
+public func SystemIdleTime() -> TimeInterval? {
     var iterator: io_iterator_t = 0
     defer { IOObjectRelease(iterator) }
     guard IOServiceGetMatchingServices(kIOMasterPortDefault, IOServiceMatching("IOHIDSystem"), &iterator) == KERN_SUCCESS else { return nil }
@@ -19,17 +19,17 @@ public func SystemIdleTime() -> NSTimeInterval? {
     defer { IOObjectRelease(entry) }
     guard entry != 0 else { return nil }
     
-    var unmanagedDict: Unmanaged<CFMutableDictionaryRef>? = nil
+    var unmanagedDict: Unmanaged<CFMutableDictionary>? = nil
     defer { unmanagedDict?.release() }
     guard IORegistryEntryCreateCFProperties(entry, &unmanagedDict, kCFAllocatorDefault, 0) == KERN_SUCCESS else { return nil }
     guard let dict = unmanagedDict?.takeUnretainedValue() else { return nil }
     
-    let key: CFString = "HIDIdleTime"
-    let address = unsafeAddressOf(key)
+    let key: CFString = "HIDIdleTime" as CFString
+    let address = Unmanaged.passUnretained(key).toOpaque()
     let value = CFDictionaryGetValue(dict, address)
-    let number: CFNumberRef = unsafeBitCast(value, CFNumberRef.self)
+    let number: CFNumber = unsafeBitCast(value, to: CFNumber.self)
     var nanoseconds: Int64 = 0
-    guard CFNumberGetValue(number, CFNumberType.SInt64Type, &nanoseconds) else { return nil }
+    guard CFNumberGetValue(number, CFNumberType.sInt64Type, &nanoseconds) else { return nil }
     let interval = Double(nanoseconds) / Double(NSEC_PER_SEC)
     
     return interval

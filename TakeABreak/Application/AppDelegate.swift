@@ -15,10 +15,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     var activityWatcher: ActivityWatcher?
     var notifier: ActivityNotifier?
     var intervalFormatter: IntervalFormatter?
-    var timer: NSTimer?
+    var timer: Timer?
     var activityLog = [Activity]()
     
-    func applicationDidFinishLaunching(notification: NSNotification) {
+    func applicationDidFinishLaunching(_ notification: Notification) {
         activityWatcher = ActivityWatcher(idleThreshold: IDLE_THRESHOLD,
                                           onActivityFinished: { [weak self] in
                                             self?.activityLog.append($0)
@@ -29,11 +29,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         self.intervalFormatter = intervalFormatter
         
         notifier = ActivityNotifier(
-            notificationCenter: NSUserNotificationCenter.defaultUserNotificationCenter(),
+            notificationCenter: NSUserNotificationCenter.default,
             formatter: intervalFormatter
         )
         
-        self.statusBarMenu = StatusBarMenu(statusBar: NSStatusBar.systemStatusBar()).then {
+        self.statusBarMenu = StatusBarMenu(statusBar: NSStatusBar.system()).then {
             $0.delegate = self
         }
         
@@ -42,14 +42,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
     }
     
-    private func createTimer() -> NSTimer {
-        return NSTimer.scheduledTimerWithTimeInterval(UI_UPDATE_INTERVAL,
+    fileprivate func createTimer() -> Timer {
+        return Timer.scheduledTimer(timeInterval: UI_UPDATE_INTERVAL,
                                                       target:   self,
                                                       selector: #selector(timerDidFire),
                                                       userInfo: nil,
                                                       repeats:  true)
     }
-    @objc private func timerDidFire() {
+    @objc fileprivate func timerDidFire() {
         updateStatus()
         updateNotification()
         updateIntervalsSum()
@@ -57,12 +57,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     
     // TODO: Extract (UI updates)
-    private func updateStatus() {
+    fileprivate func updateStatus() {
         guard let activityWatcher = activityWatcher else { return }
         guard let lastStateChange = activityWatcher.lastStateChange else { return }
         
         let currentActivityType = activityWatcher.currentActivityType()
-        let currentActivityInterval = NSDate().timeIntervalSinceDate(lastStateChange)
+        let currentActivityInterval = Date().timeIntervalSince(lastStateChange)
         
         guard let formatter = intervalFormatter else { return }
         
@@ -79,13 +79,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     // TODO: Extract (UI updates)
-    private func updateNotification() {
+    fileprivate func updateNotification() {
         guard let activityWatcher = activityWatcher else { return }
         guard let lastStateChange = activityWatcher.lastStateChange else { return }
         guard let notifier = notifier else { return }
         
         let currentActivityType = activityWatcher.currentActivityType()
-        let currentActivityInterval = NSDate().timeIntervalSinceDate(lastStateChange)
+        let currentActivityInterval = Date().timeIntervalSince(lastStateChange)
         
         switch currentActivityType {
         case .Active where currentActivityInterval > NOTIFICATION_THRESHOLD:
@@ -97,13 +97,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     // TODO: Extract (UI updates)
-    private func updateIntervalsSum() {
+    fileprivate func updateIntervalsSum() {
         guard statusBarMenu?.isMenuOpen == true else { return }
         guard let formatter = intervalFormatter else { return }
         guard let currentActivityType = activityWatcher?.currentActivityType() else { return }
         guard let lastStateChange = activityWatcher?.lastStateChange else { return }
         
-        let currentActivityInterval = NSDate().timeIntervalSinceDate(lastStateChange)
+        let currentActivityInterval = Date().timeIntervalSince(lastStateChange)
         let activeInterval = activityLog.durationSumForType(.Active) + (currentActivityType == .Active ? currentActivityInterval : 0)
         let idleInterval = activityLog.durationSumForType(.Idle) + (currentActivityType == .Idle ? currentActivityInterval : 0)
         let totalTime = activeInterval + idleInterval
@@ -117,7 +117,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
 extension AppDelegate: StatusBarMenuDelegate {
     func statusBarMenuDidSelectQuit() {
-        NSApplication.sharedApplication().terminate(self)
+        NSApplication.shared().terminate(self)
     }
     
     func statusBarMenuWillOpen() {
@@ -131,8 +131,8 @@ extension AppDelegate: StatusBarMenuDelegate {
 
 }
 
-extension SequenceType where Generator.Element == Activity {
-    func durationSumForType(type: ActivityType) -> NSTimeInterval {
+extension Sequence where Iterator.Element == Activity {
+    func durationSumForType(_ type: ActivityType) -> TimeInterval {
         return filter { $0.type == type } .reduce(0) { $0 + $1.duration() }
     }
     
