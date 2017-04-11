@@ -11,12 +11,12 @@ class StatusBarMenu: NSObject {
     private var activeTimeItem = NSMenuItem()
     private var idleTimeItem = NSMenuItem()
     private var totalTimeItem = NSMenuItem()
-    private(set) var isMenuOpen = false
+    fileprivate(set) var isMenuOpen = false
     var data = ActivityWatcher()
     
     
     init(statusBar: NSStatusBar) {
-        statusItem = statusBar.statusItemWithLength(NSVariableStatusItemLength)
+        statusItem = statusBar.statusItem(withLength: NSVariableStatusItemLength)
         statusItem.title = "Take A Break"
         super.init()
         createMenu()
@@ -28,19 +28,19 @@ class StatusBarMenu: NSObject {
         statusItem.menu?.addItem(activeTimeItem)
         statusItem.menu?.addItem(idleTimeItem)
         statusItem.menu?.addItem(totalTimeItem)
-        statusItem.menu?.addItem(NSMenuItem.separatorItem())
+        statusItem.menu?.addItem(NSMenuItem.separator())
         statusItem.menu?.addItem(NSMenuItem().then {
             $0.title = "Save Activity Log On Desktop"
             $0.target = self
             $0.action = #selector(saveLog)
             })
-        statusItem.menu?.addItem(NSMenuItem.separatorItem())
+        statusItem.menu?.addItem(NSMenuItem.separator())
         statusItem.menu?.addItem(NSMenuItem().then {
             $0.title = "Relax"
             $0.target = self
             $0.action = #selector(sleepNow)
             })
-        statusItem.menu?.addItem(NSMenuItem.separatorItem())
+        statusItem.menu?.addItem(NSMenuItem.separator())
         statusItem.menu?.addItem(NSMenuItem().then {
             $0.title = "Quit"
             $0.target = self
@@ -102,17 +102,17 @@ class StatusBarMenu: NSObject {
     }
     
     @objc private func saveLog() {
-        let stringFromArray = data.activityData.joinWithSeparator("\n")
+        let stringFromArray = data.activityData.joined(separator: "\n")
         
         func getDocumentsDirectory() -> NSString {
-            let paths = NSSearchPathForDirectoriesInDomains(.DesktopDirectory, .UserDomainMask, true)
+            let paths = NSSearchPathForDirectoriesInDomains(.desktopDirectory, .userDomainMask, true)
             let documentsDirectory = paths[0]
-            return documentsDirectory
+            return documentsDirectory as NSString
         }
-        let path = getDocumentsDirectory().stringByAppendingPathComponent("ActivityLog.txt")
+        let path = getDocumentsDirectory().appendingPathComponent("ActivityLog.txt")
         let dataLog = stringFromArray
         do {
-            try dataLog.writeToFile(path, atomically: false, encoding: NSUTF8StringEncoding)
+            try dataLog.write(toFile: path, atomically: false, encoding: String.Encoding.utf8)
         }
         catch let error as NSError {
             print("Ooops! Something went wrong: \(error)")
@@ -120,7 +120,7 @@ class StatusBarMenu: NSObject {
     
     }
     @objc private func sleepNow() {
-        let task = NSTask()
+        let task = Process()
         task.launchPath = "/usr/bin/pmset"
         task.arguments = ["sleepnow"]
         task.launch()
@@ -134,12 +134,12 @@ protocol StatusBarMenuDelegate: class {
 }
 
 extension StatusBarMenu: NSMenuDelegate {
-    func menuWillOpen(menu: NSMenu) {
+    func menuWillOpen(_ menu: NSMenu) {
         isMenuOpen = true
         delegate?.statusBarMenuWillOpen()
     }
     
-    func menuDidClose(menu: NSMenu) {
+    func menuDidClose(_ menu: NSMenu) {
         isMenuOpen = false
     }
 }

@@ -6,21 +6,21 @@
 import Foundation
 
 class IntervalFormatter {
-    private let formatter: NSDateComponentsFormatter
+    private let formatter: DateComponentsFormatter
     
     init() {
-        formatter = NSDateComponentsFormatter()
-        formatter.unitsStyle = .Abbreviated
+        formatter = DateComponentsFormatter()
+        formatter.unitsStyle = .abbreviated
     }
     
-    func stringForInterval(interval: Double) -> String {
+    func stringForInterval(_ interval: Double) -> String {
         // TODO: Add a guard against values larger than Max Int
         
-        let components = NSDateComponents()
+        var components = DateComponents()
         components.second = Int(interval) % 60
         components.minute = Int(interval) / 60 % 60
         components.hour = Int(interval) / 3600
         
-        return formatter.stringFromDateComponents(components)!
+        return formatter.string(from: components)!
     }
 }

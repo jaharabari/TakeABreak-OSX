@@ -5,7 +5,7 @@
 
 import Cocoa
 
-let app = NSApplication.sharedApplication()
+let app = NSApplication.shared()
 let delegate = AppDelegate()
 app.delegate = delegate
 NSApp.run()

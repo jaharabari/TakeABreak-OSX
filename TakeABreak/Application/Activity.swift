@@ -10,17 +10,17 @@ import Foundation
 
 class Activity {
     let type:   ActivityType
-    let start:  NSDate
-    let finish: NSDate
+    let start:  Date
+    let finish: Date
     
-    init(type: ActivityType, start: NSDate, finish: NSDate) {
+    init(type: ActivityType, start: Date, finish: Date) {
         self.type   = type
         self.start  = start
         self.finish = finish
     }
     
-    func duration() -> NSTimeInterval {
-        return finish.timeIntervalSinceDate(start)
+    func duration() -> TimeInterval {
+        return finish.timeIntervalSince(start)
         }
     }
 
