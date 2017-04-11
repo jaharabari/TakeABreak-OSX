@@ -6,9 +6,9 @@
 import Foundation
 
 class ActivityNotifier: NSObject, NSUserNotificationCenterDelegate {
-    fileprivate let notificationCenter: NSUserNotificationCenter
-    fileprivate let formatter: IntervalFormatter
-    fileprivate var notification: NSUserNotification?
+    private let notificationCenter: NSUserNotificationCenter
+    private let formatter: IntervalFormatter
+    private var notification: NSUserNotification?
     
     init(notificationCenter: NSUserNotificationCenter, formatter: IntervalFormatter) {
         self.notificationCenter = notificationCenter
@@ -33,7 +33,7 @@ class ActivityNotifier: NSObject, NSUserNotificationCenterDelegate {
         self.notification = nil
     }
     
-    fileprivate func createNotification() -> NSUserNotification {
+    private func createNotification() -> NSUserNotification {
         let notification = NSUserNotification()
         notification.identifier = UUID().uuidString
         notification.title = "Take a Break !!!"

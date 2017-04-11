@@ -9,12 +9,12 @@ class ActivityWatcher {
     static let DEFAULT_UPDATE_INTERVAL = 0.25 // Seconds
     static let DEFAULT_IDLE_THRESHOLD  = 3.00 // Seconds
     
-    fileprivate let updateInterval: TimeInterval
-    fileprivate let idleThreshold: TimeInterval
-    fileprivate let onActivityFinished: ((Activity) -> Void)?
+    private let updateInterval: TimeInterval
+    private let idleThreshold: TimeInterval
+    private let onActivityFinished: ((Activity) -> Void)?
     
-    fileprivate var timer: Timer?
-    fileprivate var previousActivityType: ActivityType?
+    private var timer: Timer?
+    private var previousActivityType: ActivityType?
     
     var activityData = [String]()
     
@@ -46,7 +46,7 @@ class ActivityWatcher {
                                                       repeats:  true)
     }
 
-    @objc fileprivate func timerDidFire() {
+    @objc private func timerDidFire() {
         let currentDate  = Date()
         let activityType = currentActivityType()
         

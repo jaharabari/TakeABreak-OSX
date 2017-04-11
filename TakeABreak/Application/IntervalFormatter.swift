@@ -6,7 +6,7 @@
 import Foundation
 
 class IntervalFormatter {
-    fileprivate let formatter: DateComponentsFormatter
+    private let formatter: DateComponentsFormatter
     
     init() {
         formatter = DateComponentsFormatter()

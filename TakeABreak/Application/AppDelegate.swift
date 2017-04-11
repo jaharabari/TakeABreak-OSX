@@ -42,14 +42,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
     }
     
-    fileprivate func createTimer() -> Timer {
+    private func createTimer() -> Timer {
         return Timer.scheduledTimer(timeInterval: UI_UPDATE_INTERVAL,
                                                       target:   self,
                                                       selector: #selector(timerDidFire),
                                                       userInfo: nil,
                                                       repeats:  true)
     }
-    @objc fileprivate func timerDidFire() {
+    @objc private func timerDidFire() {
         updateStatus()
         updateNotification()
         updateIntervalsSum()
@@ -57,7 +57,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     
     // TODO: Extract (UI updates)
-    fileprivate func updateStatus() {
+    private func updateStatus() {
         guard let activityWatcher = activityWatcher else { return }
         guard let lastStateChange = activityWatcher.lastStateChange else { return }
         
@@ -79,7 +79,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     // TODO: Extract (UI updates)
-    fileprivate func updateNotification() {
+    private func updateNotification() {
         guard let activityWatcher = activityWatcher else { return }
         guard let lastStateChange = activityWatcher.lastStateChange else { return }
         guard let notifier = notifier else { return }

@@ -7,10 +7,10 @@ import Cocoa
 
 class StatusBarMenu: NSObject {
     weak var delegate: StatusBarMenuDelegate?
-    fileprivate var statusItem: NSStatusItem
-    fileprivate var activeTimeItem = NSMenuItem()
-    fileprivate var idleTimeItem = NSMenuItem()
-    fileprivate var totalTimeItem = NSMenuItem()
+    private var statusItem: NSStatusItem
+    private var activeTimeItem = NSMenuItem()
+    private var idleTimeItem = NSMenuItem()
+    private var totalTimeItem = NSMenuItem()
     fileprivate(set) var isMenuOpen = false
     var data = ActivityWatcher()
     
@@ -22,7 +22,7 @@ class StatusBarMenu: NSObject {
         createMenu()
     }
     
-    fileprivate func createMenu() {
+    private func createMenu() {
         statusItem.menu = NSMenu()
         statusItem.menu?.delegate = self
         statusItem.menu?.addItem(activeTimeItem)
@@ -70,7 +70,7 @@ class StatusBarMenu: NSObject {
         didSet { updateTotalTime() }
     }
 
-    fileprivate func updateActiveTime() {
+    private func updateActiveTime() {
         if let time = activeTime {
             activeTimeItem.title = "Active Time: \(time)"
         }
@@ -79,7 +79,7 @@ class StatusBarMenu: NSObject {
         }
     }
     
-    fileprivate func updateIdleTime() {
+    private func updateIdleTime() {
         if let time = idleTime {
             idleTimeItem.title = "Idle Time: \(time)"
         }
@@ -88,7 +88,7 @@ class StatusBarMenu: NSObject {
         }
     }
     
-    fileprivate func updateTotalTime() {
+    private func updateTotalTime() {
         if let time = totalTime {
             totalTimeItem.title = "Total Time: \(time)"
         }
@@ -97,11 +97,11 @@ class StatusBarMenu: NSObject {
         }
     }
     
-    @objc fileprivate func quitAction() {
+    @objc private func quitAction() {
         delegate?.statusBarMenuDidSelectQuit()
     }
     
-    @objc fileprivate func saveLog() {
+    @objc private func saveLog() {
         let stringFromArray = data.activityData.joined(separator: "\n")
         
         func getDocumentsDirectory() -> NSString {
@@ -119,7 +119,7 @@ class StatusBarMenu: NSObject {
         }
     
     }
-    @objc fileprivate func sleepNow() {
+    @objc private func sleepNow() {
         let task = Process()
         task.launchPath = "/usr/bin/pmset"
         task.arguments = ["sleepnow"]
